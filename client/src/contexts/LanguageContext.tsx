@@ -29,7 +29,7 @@ const translations: Translations = {
   'services.title': { en: 'Our Expertise', ar: 'خبراتنا' },
   'services.subtitle': { en: 'Four Pillars of Digital Excellence', ar: 'أربعة ركائز للتميز الرقمي' },
   'services.ai.title': { en: 'Artificial Intelligence', ar: 'الذكاء الاصطناعي' },
-  'services.ai.description': { en: 'Harness the power of machine learning and AI to automate processes, gain insights, and drive innovation across your organization.', ar: 'استفد من قوة التعلم الآلي والذكاء الاصطناعي لأتمتة العمليات واكتساب الرؤى ودفع الابتكار في مؤسستك.' },
+  'services.ai.description': { en: 'Leverage advanced Generative AI, intelligent automation, and seamless AI integration to transform operations, enhance decision-making, and accelerate digital innovation across your enterprise.', ar: 'استفد من قوة التعلم الآلي والذكاء الاصطناعي لأتمتة العمليات واكتساب الرؤى ودفع الابتكار في مؤسستك.' },
   'services.cyber.title': { en: 'Cyber Security', ar: 'الأمن السيبراني' },
   'services.cyber.description': { en: 'Protect your digital assets with comprehensive security solutions, threat detection, and compliance frameworks tailored for the Saudi market.', ar: 'احمِ أصولك الرقمية من خلال حلول أمنية شاملة واكتشاف التهديدات وأطر الامتثال المصممة للسوق السعودي.' },
   'services.digital.title': { en: 'Digital Transformation', ar: 'التحول الرقمي' },
@@ -100,7 +100,7 @@ const translations: Translations = {
   'contact.info.phone': { en: '+966 11 XXX XXXX', ar: '+966 11 XXX XXXX' },
   
   // Footer
-  'footer.description': { en: 'Leading Saudi Arabia\'s digital transformation journey with innovative technology solutions.', ar: 'نقود رحلة التحول الرقمي في المملكة العربية السعودية من خلال حلول تقنية مبتكرة.' },
+  'footer.description': { en: 'Digital transformation journey with innovative technology solutions.', ar: 'نقود رحلة التحول الرقمي في المملكة العربية السعودية من خلال حلول تقنية مبتكرة.' },
   'footer.quicklinks': { en: 'Quick Links', ar: 'روابط سريعة' },
   'footer.services': { en: 'Our Services', ar: 'خدماتنا' },
   'footer.contact': { en: 'Contact Info', ar: 'معلومات الاتصال' },

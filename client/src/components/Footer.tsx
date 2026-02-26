@@ -1,4 +1,4 @@
-/* Footer.jsx - Desert Futurism Gold/Slate Theme */
+/* Footer.jsx - Nalyst-inspired clean design */
 
 import { Link } from 'wouter';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -9,6 +9,7 @@ import pillersLogo from '@/assets/images/3pillers.svg';
 
 export default function Footer() {
   const { t, dir, language } = useLanguage();
+  const isRTL = dir === 'rtl';
 
   const quickLinks = [
     { href: '/', label: t('nav.home') },
@@ -24,66 +25,49 @@ export default function Footer() {
     { label: t('services.cyber.title') },
     { label: t('services.digital.title') },
     { label: t('services.aws.title') },
-
   ];
 
   return (
-    <footer className="relative bg-white  overflow-hidden">
-      {/* Decorative blur circles */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl opacity-50" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl opacity-50" />
+    <footer className="bg-slate-50">
 
-      <div className="container mx-auto px-4 relative py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+      {/* Main footer content */}
+      <div className="container mx-auto px-8 py-16">
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 ${isRTL ? 'text-right' : ''}`}>
+
           {/* Brand Column */}
-          <div className={dir === 'rtl' ? 'text-right space-y-6' : 'space-y-6'}>
-         <div className="pillers ">
-             <Link href="/" className="ml-0 pl-0">
-              <motion.div
-                className="flex items-center gap-2 cursor-pointer ml-0 pl-0"
-              >
-                <img
-                  src={logo}
-                  alt="Logo"
-                  className="w-24 h-24 ml-0 pl-0 mb-6 object-contain"
-                />
-              </motion.div>
+          <div className="space-y-5">
+            <Link href="/">
+              <img src={logo} alt="Logo" className="h-16 w-auto object-contain cursor-pointer" />
             </Link>
-         
-         </div>
-            <p className={`text-slate-600 text-sm leading-relaxed ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
+            <p className={`text-slate-500 text-sm leading-relaxed max-w-xs ${isRTL ? 'font-arabic' : 'font-body'}`}>
               {t('footer.description')}
             </p>
-            <div className="flex gap-3">
-              <motion.a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-600 hover:text-yellow-500 hover:border-yellow-500 transition-colors"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Linkedin className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-slate-100 border border-slate-300 flex items-center justify-center text-slate-600 hover:text-yellow-500 hover:border-yellow-500 transition-colors"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Twitter className="w-5 h-5" />
-              </motion.a>
+            <div className={`flex gap-3 ${isRTL ? 'justify-end' : ''}`}>
+              {[Linkedin, Twitter].map((Icon, i) => (
+                <motion.a
+                  key={i}
+                  href="#"
+                  whileHover={{ y: -2 }}
+                  className="w-9 h-9 rounded-md border border-slate-200 bg-white flex items-center justify-center text-slate-400 hover:text-[#32a7b5] hover:border-[#32a7b5] transition-all duration-200"
+                >
+                  <Icon className="w-4 h-4" />
+                </motion.a>
+              ))}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className={dir === 'rtl' ? 'text-right' : ''}>
-            <h4 className={`text-slate-700 font-semibold mb-6 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
+          <div>
+            <h4 className={`text-slate-800 font-bold text-sm uppercase tracking-widest mb-4 ${isRTL ? 'font-arabic' : 'font-display'}`}>
               {t('footer.quicklinks')}
             </h4>
+            {/* Colored underline accent */}
+            <div className="w-8 h-0.5 bg-[#32a7b5] mb-6" />
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href}>
-                    <span className={`text-slate-600 hover:text-[#32a7b5] transition-colors text-sm cursor-pointer ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
+                    <span className={`text-slate-500 hover:text-[#32a7b5] transition-colors text-sm cursor-pointer ${isRTL ? 'font-arabic' : 'font-body'}`}>
                       {link.label}
                     </span>
                   </Link>
@@ -93,15 +77,16 @@ export default function Footer() {
           </div>
 
           {/* Services */}
-          <div className={dir === 'rtl' ? 'text-right' : ''}>
-            <h4 className={`text-slate-700 font-semibold mb-6 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
+          <div>
+            <h4 className={`text-slate-800 font-bold text-sm uppercase tracking-widest mb-4 ${isRTL ? 'font-arabic' : 'font-display'}`}>
               {t('footer.services')}
             </h4>
+            <div className="w-8 h-0.5 bg-[#32a7b5] mb-6" />
             <ul className="space-y-3">
               {services.map((service, idx) => (
                 <li key={idx}>
                   <Link href="/services">
-                    <span className={`text-slate-600 hover:text-[#32a7b5] transition-colors text-sm cursor-pointer ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
+                    <span className={`text-slate-500 hover:text-[#32a7b5] transition-colors text-sm cursor-pointer ${isRTL ? 'font-arabic' : 'font-body'}`}>
                       {service.label}
                     </span>
                   </Link>
@@ -110,59 +95,60 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div className={dir === 'rtl' ? 'text-right' : ''}>
-            <h4 className={`text-slate-700 font-semibold mb-6 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
+          {/* Contact */}
+          <div>
+            <h4 className={`text-slate-800 font-bold text-sm uppercase tracking-widest mb-4 ${isRTL ? 'font-arabic' : 'font-display'}`}>
               {t('footer.contact')}
             </h4>
+            <div className="w-8 h-0.5 bg-[#32a7b5] mb-6" />
             <ul className="space-y-4">
-              <li className={`flex items-start gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                <MapPin className="w-5 h-5 text-[#32a7b5] flex-shrink-0 mt-0.5" />
-                <span className={`text-slate-600 text-sm ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
+              <li className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <Mail className="w-4 h-4 text-[#32a7b5] flex-shrink-0 mt-0.5" />
+                <span className="text-slate-500 text-sm font-body">{t('contact.info.email')}</span>
+              </li>
+              <li className={`flex items-center gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <Phone className="w-4 h-4 text-[#32a7b5] flex-shrink-0" />
+                <span className="text-slate-500 text-sm font-body" dir="ltr">{t('contact.info.phone')}</span>
+              </li>
+              <li className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <MapPin className="w-4 h-4 text-[#32a7b5] flex-shrink-0 mt-0.5" />
+                <span className={`text-slate-500 text-sm ${isRTL ? 'font-arabic' : 'font-body'}`}>
                   {t('contact.info.address')}
                 </span>
               </li>
-
-              <li className={`flex items-center gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                <Mail className="w-5 h-5 text-[#32a7b5] flex-shrink-0" />
-                <span className="text-slate-600 text-sm font-body">
-                  {t('contact.info.email')}
-                </span>
-              </li>
-
-              <li className={`flex items-center gap-3 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                <Phone className="w-5 h-5 text-[#32a7b5] flex-shrink-0" />
-                <span className="text-slate-600 text-sm font-body" dir="ltr">
-                  {t('contact.info.phone')}
-                </span>
-              </li>
             </ul>
-            
           </div>
-           {/* 3pillers logo  */}
-             <Link href="/" className="">
-              <motion.div
-                className="flex items-center gap-1 cursor-pointer "
-              >
-                <img
-                  src={pillersLogo}
-                  alt="Logo"
-                  className="w-32 h-32 "
-                />
-              </motion.div>
-            </Link>
         </div>
+      </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-3 pt-3 border-t border-slate-200">
-          <div className={`flex flex-col md:flex-row justify-between items-center gap-4 ${dir === 'rtl' ? 'md:flex-row-reverse' : ''}`}>
-            <p className={`text-slate-600 text-sm ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
+      {/* Bottom bar */}
+      <div className="border-t border-slate-200 bg-white">
+        <div className="container mx-auto px-8 py-4">
+          <div className={`flex flex-col md:flex-row items-center justify-between gap-4 ${isRTL ? 'md:flex-row-reverse' : ''}`}>
+
+            {/* Copyright */}
+            <p className={`text-slate-400 text-sm ${isRTL ? 'font-arabic' : 'font-body'}`}>
               {t('footer.copyright')}
             </p>
-            <div className="flex items-center gap-2 text-slate-600 text-sm">
-              <span className="font-body">Aligned with</span>
+
+            {/* Vision 2030 */}
+            <div className="flex items-center gap-1.5 text-sm">
+              <span className="text-slate-400">Aligned with</span>
               <span className="text-[#32a7b5] font-semibold">Vision 2030</span>
             </div>
+
+            {/* Logos row — right side of bottom bar */}
+            <div className={`flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <Link href="/">
+                <motion.img
+                  src={pillersLogo}
+                  alt="3 Pillars"
+                  className="h-10 w-auto object-contain cursor-pointer opacity-75 hover:opacity-100 transition-opacity"
+                  whileHover={{ scale: 1.05 }}
+                />
+              </Link>
+            </div>
+
           </div>
         </div>
       </div>

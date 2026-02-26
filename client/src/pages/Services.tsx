@@ -42,8 +42,22 @@ export default function Services() {
       image: AI_IMG,
       color: '#00D4AA',
       features: language === 'en'
-        ? ['Machine Learning Solutions', 'Natural Language Processing', 'Computer Vision', 'Predictive Analytics', 'AI Strategy Consulting', 'Custom AI Model Development']
-        : ['حلول التعلم الآلي', 'معالجة اللغة الطبيعية', 'الرؤية الحاسوبية', 'التحليلات التنبؤية', 'استشارات استراتيجية الذكاء الاصطناعي', 'تطوير نماذج الذكاء الاصطناعي المخصصة'],
+        ? [
+            'Generative AI Solutions',
+            'AI Integration & Automation',
+            'Natural Language Processing (NLP)',
+            'Computer Vision & Video Analytics',
+            'Predictive & Prescriptive Analytics',
+            'Custom AI Model Development & Deployment',
+          ]
+        : [
+            'حلول الذكاء الاصطناعي التوليدي',
+            'تكامل الذكاء الاصطناعي والأتمتة',
+            'معالجة اللغة الطبيعية',
+            'الرؤية الحاسوبية وتحليل الفيديو',
+            'التحليلات التنبؤية والتوجيهية',
+            'تطوير ونشر نماذج الذكاء الاصطناعي المخصصة',
+          ],
     },
     {
       id: 'cyber',

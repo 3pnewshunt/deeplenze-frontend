@@ -359,15 +359,7 @@ const productNames = [
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <span
-          className={`inline-block px-4 py-2 rounded-full bg-[#32a7b5]/20 border border-[#32a7b5]/30 text-[#32a7b5] text-sm font-bold mb-6 tracking-wide uppercase ${
-            dir === "rtl" ? "font-arabic" : "font-body"
-          }`}
-        >
-          {language === "en"
-            ? "Aligned with Vision 2030"
-            : "متوافق مع رؤية 2030"}
-        </span>
+        
       </motion.div>
 
       {/* Typing Title */}
@@ -461,9 +453,7 @@ const productNames = [
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
           >
-            <span className="inline-block px-4 py-2 rounded-full bg-[#32A7B51A] text-[#32a7b5] text-sm font-bold mb-4 uppercase tracking-wider">
-              {language === "en" ? "What We Do" : "ما نقدمه"}
-            </span>
+      
             <h2
               className={`text-4xl md:text-5xl font-bold text-slate-800 mb-6 ${dir === "rtl" ? "font-arabic" : "font-display"}`}
             >
