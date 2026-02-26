@@ -1,5 +1,3 @@
-/* Footer.jsx - Nalyst-inspired clean design */
-
 import { Link } from 'wouter';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Mail, Phone, MapPin, Linkedin, Twitter } from 'lucide-react';
@@ -133,8 +131,17 @@ export default function Footer() {
 
             {/* Vision 2030 */}
             <div className="flex items-center gap-1.5 text-sm">
-            <a href=""><span className="text-slate-400">Privacy Policy</span></a>
-            <a href=""><span className="text-[#32a7b5] font-semibold">Terms & Conditions</span></a>
+              <Link href="/privacy-policy">
+                <span className="text-slate-400 hover:text-[#32a7b5] cursor-pointer transition-colors duration-200 hover:underline underline-offset-4">
+                  Privacy Policy
+                </span>
+              </Link>
+              <span className="text-slate-300">|</span>
+              <Link href="/terms-conditions">
+                <span className="text-slate-400 hover:text-[#32a7b5] cursor-pointer transition-colors duration-200 hover:underline underline-offset-4">
+                  Terms & Conditions
+                </span>
+              </Link>
             </div>
 
             {/* Logos row — right side of bottom bar */}

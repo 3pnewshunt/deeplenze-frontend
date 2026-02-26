@@ -1,8 +1,3 @@
-/* Desert Futurism Design - Header Component
- * Floating glass navigation with language switcher
- * Colors: Midnight Blue bg, Gold/Teal accents
- */
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -10,11 +5,13 @@ import { Menu, X, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '@/assets/images/logo.svg';
 
+
 export default function Header() {
   const { language, setLanguage, t, dir } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [location] = useLocation();
+  const isLightPage = ['/privacy-policy', '/terms-conditions'].includes(location);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,14 +36,17 @@ export default function Header() {
 
   return (
     <header
-   className={`fixed top-0 left-0 right-0 !border-0 z-50 transition-all duration-500 ${
-    isScrolled
-      ? 'py-3 glass shadow-sm bg-[#0f1f2a] text-white' 
-      : 'py- bg-transparent text-white'               
-  } `}
+      className={`fixed top-0 left-0 right-0 !border-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'py-3 glass shadow-sm bg-[#0f1f2a]'
+          : isLightPage
+          ? 'py-3 bg-white shadow-sm border-b border-slate-100'
+          : 'py-3 bg-transparent'
+      }`}
     >
       <div className="container mx-auto px-2 py-2">
         <nav className="flex items-center justify-between">
+
           {/* Logo */}
           <Link href="/">
             <motion.div
@@ -59,48 +59,45 @@ export default function Header() {
                 alt="Logo"
                 className="w-18 h-18 object-contain transition-transform duration-300"
               />
-
-
-              {/* Optional Text */}
-              {/* 
-    <span className="text-foreground font-semibold text-lg tracking-wide">
-      Deeplenz
-    </span> 
-    */}
             </motion.div>
           </Link>
 
-
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
-  {navLinks.map((link) => (
-    <Link key={link.href} href={link.href}>
-      <motion.span
-        className={`relative text-sm font-medium transition-colors cursor-pointer ${
-          location === link.href
-            ? 'text-white'
-            : 'text-white hover:text-[#32a7b5]'
-        } ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}
-        whileHover={{ y: -2 }}
-        transition={{ type: 'spring', stiffness: 400 }}
-      >
-        {link.label}
-        {location === link.href && (
-          <motion.div
-            className="absolute -bottom-1 left-1 right-1 h-0.5 bg-[#fdffff]"
-            layoutId="activeNav"
-          />
-        )}
-      </motion.span>
-    </Link>
-  ))}
-</div>
+            {navLinks.map((link) => (
+              <Link key={link.href} href={link.href}>
+                <motion.span
+                  className={`relative text-sm font-medium transition-colors cursor-pointer ${
+                    location === link.href
+                      ? isScrolled || !isLightPage ? 'text-white' : 'text-slate-900'
+                      : isScrolled || !isLightPage
+                      ? 'text-white hover:text-[#32a7b5]'
+                      : 'text-slate-700 hover:text-[#32a7b5]'
+                  } ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}
+                  whileHover={{ y: -2 }}
+                  transition={{ type: 'spring', stiffness: 400 }}
+                >
+                  {link.label}
+                  {location === link.href && (
+                    <motion.div
+                      className={`absolute -bottom-1 left-1 right-1 h-0.5 ${
+                        isScrolled || !isLightPage ? 'bg-white' : 'bg-[#32a7b5]'
+                      }`}
+                      layoutId="activeNav"
+                    />
+                  )}
+                </motion.span>
+              </Link>
+            ))}
+          </div>
 
           {/* Language Switcher & CTA */}
           <div className="hidden lg:flex items-center gap-4">
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-2 px-3 py-2 text-white"
+              className={`flex items-center gap-2 px-3 py-2 ${
+                isScrolled || !isLightPage ? 'text-white' : 'text-slate-700'
+              }`}
             >
               <Globe className="w-4 h-4" />
               <span className={`text-sm font-medium ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
@@ -110,31 +107,37 @@ export default function Header() {
 
             <Link href="/contact">
               <button
-                className="px-5 py-2.5 bg-transparent text-white font-semibold text-sm rounded-lg border border-[#32a7b5]"
+                className={`px-5 py-2.5 bg-transparent font-semibold text-sm rounded-lg border border-[#32a7b5] ${
+                  isScrolled || !isLightPage ? 'text-white' : 'text-slate-700'
+                }`}
               >
                 <span className={dir === 'rtl' ? 'font-arabic' : 'font-body'}>
                   {t('nav.contact')}
                 </span>
               </button>
             </Link>
-
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex lg:hidden items-center gap-2 pl-10">
             <motion.button
               onClick={toggleLanguage}
-              className="p-2 rounded-lg border border-white text-white"
+              className={`p-2 rounded-lg border ${
+                isScrolled || !isLightPage ? 'border-white text-white' : 'border-slate-400 text-slate-700'
+              }`}
               whileTap={{ scale: 0.95 }}
             >
               <Globe className="w-5 h-5" />
             </motion.button>
             <motion.button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 text-foreground"
+              className="p-2"
               whileTap={{ scale: 0.95 }}
             >
-              {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-10 h-10 text-white" />}
+              {isMobileMenuOpen
+                ? <X className={`w-8 h-8 ${isScrolled || !isLightPage ? 'text-white' : 'text-slate-800'}`} />
+                : <Menu className={`w-10 h-10 ${isScrolled || !isLightPage ? 'text-white' : 'text-slate-800'}`} />
+              }
             </motion.button>
           </div>
         </nav>
@@ -160,10 +163,11 @@ export default function Header() {
                   <Link href={link.href}>
                     <span
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`block py-3 px-4 rounded-lg transition-colors cursor-pointer ${location === link.href
-                        ? 'bg-primary/10 text-primary'
-                        : 'text-slate-white hover:bg-gray-50 hover:text-slate-800'
-                        } ${dir === 'rtl' ? 'font-arabic text-right' : 'font-body'}`}
+                      className={`block py-3 px-4 rounded-lg transition-colors cursor-pointer ${
+                        location === link.href
+                          ? 'bg-primary/10 text-primary'
+                          : 'text-slate-700 hover:bg-gray-50 hover:text-slate-800'
+                      } ${dir === 'rtl' ? 'font-arabic text-right' : 'font-body'}`}
                     >
                       {link.label}
                     </span>

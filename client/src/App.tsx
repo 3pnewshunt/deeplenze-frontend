@@ -15,6 +15,8 @@ import Services from "./pages/Services";
 import Products from "./pages/Products";
 import Industries from "./pages/Industries";
 import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/Privacy";
+import TermsConditions from "./pages/Termsconditions";
 
 // Product detail pages
 // import Nalyst from "@/pages/products/Nalyst";
@@ -53,9 +55,12 @@ function Router() {
       <Route path="/products/hr360" component={Hr360} /> */}
 
       <Route path="/products" component={Products} />
-
       <Route path="/industries" component={Industries} />
       <Route path="/contact" component={Contact} />
+
+      {/* Legal pages */}
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-conditions" component={TermsConditions} />
 
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
