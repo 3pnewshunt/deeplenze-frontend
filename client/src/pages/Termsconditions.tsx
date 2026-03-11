@@ -112,69 +112,40 @@ export default function TermsConditions() {
 
   {/* Content */}
   <div className="relative z-10 text-center">
-    <p className="text-[#32a7b5] text-sm font-semibold uppercase tracking-widest mb-3">
+    {/* <p className="text-[#32a7b5] text-sm font-semibold uppercase tracking-widest mb-3">
       {language === 'en' ? 'Legal' : 'قانوني'}
-    </p>
+    </p> */}
     <h1 className={`text-4xl md:text-6xl font-bold text-white mb-5 ${isRTL ? 'font-arabic' : 'font-display'}`}>
       {language === 'en' ? 'Terms & Conditions' : 'الشروط والأحكام'}
     </h1>
-    <p className={`text-white/80 text-center text-lg leading-relaxed mb-4  ${isRTL ? 'font-arabic' : 'font-body'}`}>
+    {/* <p className={`text-white/80 text-center text-lg leading-relaxed mb-4  ${isRTL ? 'font-arabic' : 'font-body'}`}>
       {language === 'en'
         ? "Please read these Terms and Conditions carefully before using Deeplenze's platform and services."
         : 'يرجى قراءة هذه الشروط والأحكام بعناية قبل استخدام منصة وخدمات ديب لنز.'}
-    </p>
-    <p className="text-white/50 text-base">
+    </p> */}
+    {/* <p className="text-white/50 text-base">
       {language === 'en' ? 'Last updated: February 7, 2026' : 'آخر تحديث: ٧ فبراير ٢٠٢٦'}
-    </p>
+    </p> */}
   </div>
 
 </div>
 
-        {/* Content */}
-        <div className="w-full  pl-5 pr-8 py-14">
-          <div className="space-y-10 max-w-4xl">
-            {sections.map((section) => (
-              <div key={section.number} className={isRTL ? 'text-right' : ''}>
-                <h2 className={`text-3xl font-bold text-slate-900 mb-3 ${isRTL ? 'font-arabic' : 'font-display'}`}>
-                  {section.number} {section.title}
-                </h2>
-
-                {section.isList && section.items ? (
-                  <ul className={`space-y-2 ${isRTL ? 'pr-6' : 'pl-6'}`}>
-                    {section.items.map((item, i) => (
-                      <li
-                        key={i}
-                        className={`text-slate-600 text-lg leading-relaxed list-disc ${isRTL ? 'font-arabic' : 'font-body'}`}
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className={`text-slate-600  text-lg leading-relaxed ${isRTL ? 'font-arabic' : 'font-body'}`}>
-                    {section.content}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Contact box */}
-          <div className="mt-14 border border-slate-200 rounded-xl p-8 bg-slate-50 max-w-4xl">
-            <h3 className={`text-2xl font-bold text-slate-900 mb-2 ${isRTL ? 'font-arabic' : 'font-display'}`}>
-              {language === 'en' ? 'Contact Us' : 'تواصل معنا'}
-            </h3>
-            <p className={`text-slate-600 text-lg ${isRTL ? 'font-arabic' : 'font-body'}`}>
-              {language === 'en'
-                ? <>If you have any questions about these Terms, contact us at{' '}
-                    <a href="mailto:support@deeplenze.com" className="text-[#32a7b5] hover:underline">support@deeplenze.com</a>.</>
-                : <>إذا كانت لديك أي أسئلة حول هذه الشروط، تواصل معنا على{' '}
-                    <a href="mailto:support@deeplenze.com" className="text-[#32a7b5] hover:underline">support@deeplenze.com</a>.</>
-              }
-            </p>
-          </div>
-        </div>
-
+      <h1 className='text-black mx-5 my-5'>Welcome to Deeplenz. These Terms and Conditions govern your access to and use of the Deeplenz website, its services, software platforms, and digital products. By accessing or using this website and any services offered by Deeplenz, you agree to comply with and be bound by these Terms. If you do not agree with these Terms, you should not use this website or any of the services provided through it.
+Deeplenz is a technology company that provides professional services and digital products in the fields of cybersecurity, artificial intelligence, cloud computing, and digital transformation. The company offers consulting, implementation, analytics, monitoring, and managed services for organizations seeking to improve their technological infrastructure and security posture. Deeplenz may also develop and distribute proprietary software platforms and digital products designed to support enterprise operations, cybersecurity protection, AI-driven analytics, and cloud-based solutions.
+By using this website, you confirm that you are legally capable of entering into binding agreements and that you will comply with all applicable laws and regulations. Users must not engage in any activity that could harm, disrupt, or interfere with the operation of the website or services. Unauthorized access attempts, misuse of the platform, fraudulent activities, or actions that compromise the security or performance of the website are strictly prohibited.
+The services provided by Deeplenz may include cybersecurity assessments, threat monitoring, penetration testing, AI system development, machine learning integration, cloud infrastructure consulting, system architecture design, and enterprise software development. Access to certain services may require separate agreements, service contracts, or statements of work that define the scope, deliverables, and obligations of both parties. These agreements may include additional terms specific to the services being provided.
+Deeplenz may also offer proprietary software products, applications, and platforms through its website or related services. Such software is licensed to users and not sold. Users are granted a limited, non-exclusive license to use the software in accordance with the terms provided by Deeplenz. Users may not reverse engineer, modify, copy, distribute, or attempt to extract source code from any Deeplenz software without prior written consent.
+All content available on the Deeplenz website, including but not limited to text, graphics, designs, software, logos, product descriptions, and technological frameworks, is the intellectual property of Deeplenz or its licensors. This content is protected by applicable intellectual property laws. Users may not reproduce, distribute, publish, or commercially exploit any part of the website or its content without prior written authorization from Deeplenz.
+During the course of providing services, Deeplenz and its clients may exchange confidential information. Both parties agree to treat such information with strict confidentiality and to use it only for the purpose of fulfilling contractual obligations. Deeplenz will implement reasonable measures to safeguard sensitive client information and ensure that it is handled in accordance with professional standards and applicable data protection laws.
+While Deeplenz provides cybersecurity solutions and services designed to enhance security and resilience, no system can be guaranteed to be completely secure. Users acknowledge that cybersecurity threats evolve continuously and that Deeplenz cannot guarantee the complete prevention of security incidents, breaches, or system failures. Clients are responsible for maintaining appropriate internal controls, security practices, and operational safeguards within their own environments.
+The Deeplenz website or services may integrate with third-party technologies, cloud providers, software platforms, or external APIs. Deeplenz does not control and is not responsible for the practices, availability, performance, or data handling policies of these third-party services. Users are encouraged to review the terms and privacy policies of any third-party providers before using their services.
+To the maximum extent permitted by law, Deeplenz shall not be liable for any indirect, incidental, special, or consequential damages arising from the use of its website, services, or products. This includes but is not limited to loss of profits, loss of data, business interruption, or damages resulting from security incidents involving third-party systems. Any liability of Deeplenz related to the services provided shall be limited to the amount paid by the client for the specific service that gave rise to the claim.
+All services and products provided by Deeplenz are offered on an “as is” and “as available” basis unless otherwise specified in a written agreement. Deeplenz does not provide warranties of any kind, whether express or implied, including warranties related to merchantability, fitness for a particular purpose, or non-infringement.
+Certain services, software products, or subscriptions offered by Deeplenz may require payment. Payment terms, billing cycles, and service fees will be specified in contracts, service agreements, invoices, or subscription plans provided to the client. Failure to comply with payment obligations may result in suspension or termination of services.
+Deeplenz reserves the right to suspend or terminate access to its website, services, or software products if a user violates these Terms, engages in unlawful activities, or fails to meet contractual or payment obligations. Deeplenz may also restrict access if it determines that continued use poses security risks or operational threats.
+These Terms and Conditions may be updated or modified by Deeplenz from time to time to reflect changes in services, legal requirements, or operational policies. Any updates will be published on the website, and continued use of the website or services after such updates constitutes acceptance of the revised Terms.
+These Terms shall be governed and interpreted in accordance with the applicable laws of the jurisdiction in which Deeplenz operates or where the relevant service agreement is executed. Any disputes arising from the use of the website or services shall be resolved in accordance with the applicable legal framework and dispute resolution procedures.
+If you have any questions regarding these Terms and Conditions or require further information about Deeplenz services and products, you may contact Deeplenz through the contact information provided on the website.</h1>
       </main>
 
       <Footer />

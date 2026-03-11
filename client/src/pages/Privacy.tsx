@@ -112,68 +112,37 @@ export default function PrivacyPolicy() {
 
   {/* Content */}
   <div className="relative z-10 text-center">
-    <p className="text-[#32a7b5] text-sm font-semibold uppercase tracking-widest mb-3">
+    {/* <p className="text-[#32a7b5] text-sm font-semibold uppercase tracking-widest mb-3">
       {language === 'en' ? 'Legal' : 'قانوني'}
-    </p>
+    </p> */}
     <h1 className={`text-4xl md:text-6xl font-bold text-white mb-5 ${isRTL ? 'font-arabic' : 'font-display'}`}>
       {language === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية'}
     </h1>
-    <p className={`text-white/80 text-lg text-center leading-relaxed mb-4  ${isRTL ? 'font-arabic' : 'font-body'}`}>
+    {/* <p className={`text-white/80 text-lg text-center leading-relaxed mb-4  ${isRTL ? 'font-arabic' : 'font-body'}`}>
       {language === 'en'
         ? 'This Privacy Policy explains how Deeplenze Technologies collects, uses, discloses, and safeguards your information when you use our services.'
         : 'توضح سياسة الخصوصية هذه كيفية قيام شركة ديب لنز للتقنيات بجمع معلوماتك واستخدامها والإفصاح عنها وحمايتها عند استخدامك لخدماتنا.'}
-    </p>
-    <p className="text-white/50 text-base">
-      {language === 'en' ? 'Last updated: February 7, 2026' : 'آخر تحديث: ٧ فبراير ٢٠٢٦'}
-    </p>
+    </p> */}
+   
   </div>
 
 </div>
 
                 {/* Content */}
-                <div className="w-full pl-5 pr-8 py-14">
-                    <div className="space-y-10 max-w-4xl">
-                        {sections.map((section) => (
-                            <div key={section.number} className={isRTL ? 'text-right' : ''}>
-                                <h2 className={`text-3xl font-bold text-slate-900 mb-3 ${isRTL ? 'font-arabic' : 'font-display'}`}>
-                                    {section.number} {section.title}
-                                </h2>
-
-                                {section.isList && section.items ? (
-                                    <ul className={`space-y-2 ${isRTL ? 'pr-6' : 'pl-6'}`}>
-                                        {section.items.map((item, i) => (
-                                            <li
-                                                key={i}
-                                                className={`text-slate-600 text-lg leading-relaxed list-disc ${isRTL ? 'font-arabic' : 'font-body'}`}
-                                            >
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                ) : (
-                                    <p className={`text-slate-600 text-lg leading-relaxed ${isRTL ? 'font-arabic' : 'font-body'}`}>
-                                        {section.content}
-                                    </p>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Contact Us box */}
-                    <div className="mt-14 border border-slate-200 rounded-xl p-8 bg-slate-50 max-w-4xl">
-                        <h3 className={`text-2xl font-bold text-slate-900 mb-2 ${isRTL ? 'font-arabic' : 'font-display'}`}>
-                            {language === 'en' ? 'Contact Us' : 'تواصل معنا'}
-                        </h3>
-                        <p className={`text-slate-600 text-lg ${isRTL ? 'font-arabic' : 'font-body'}`}>
-                            {language === 'en'
-                                ? <>If you have any questions about this policy, contact us at{' '}
-                                    <a href="mailto:support@deeplenze.com" className="text-[#32a7b5] hover:underline">support@deeplenze.com</a>.</>
-                                : <>إذا كانت لديك أي أسئلة حول هذه السياسة، تواصل معنا على{' '}
-                                    <a href="mailto:support@deeplenze.com" className="text-[#32a7b5] hover:underline">support@deeplenze.com</a>.</>
-                            }
-                        </p>
-                    </div>
-                </div>
+              <h1 className='text-black mx-6 my-5'>
+                At Deeplenz, we are committed to protecting the privacy and security of our users, clients, and visitors. This Privacy Policy explains how Deeplenz collects, uses, stores, and protects personal and organizational information when you access our website, use our services, or interact with our products. By using the Deeplenz website or services, you agree to the practices described in this Privacy Policy.
+Deeplenz may collect certain information when users visit our website, contact us, or use our services. This information may include personal details such as name, email address, phone number, company name, job title, and other information provided voluntarily through contact forms, service inquiries, or registration processes. In addition, we may collect technical information such as IP address, browser type, device information, operating system, pages visited, and interaction data to help us understand how our website and services are used.
+The information collected by Deeplenz is used to provide and improve our services, respond to inquiries, deliver cybersecurity, AI, and cloud-related solutions, manage service engagements, communicate with clients, and enhance the overall user experience. We may also use collected data to improve our products, conduct analytics, monitor system performance, ensure security, and develop new services and technologies.
+Deeplenz may collect information automatically through technologies such as cookies, analytics tools, and log files. Cookies help us improve website functionality, remember user preferences, analyze traffic patterns, and enhance website performance. Users may choose to disable cookies through their browser settings, although some features of the website may not function properly if cookies are disabled.
+We take reasonable administrative, technical, and organizational measures to protect personal and business information against unauthorized access, misuse, alteration, or disclosure. These measures may include secure data storage, encryption, access controls, and security monitoring systems. While we strive to protect information using industry-standard practices, no method of transmission over the internet or electronic storage can be guaranteed to be completely secure.
+Deeplenz may share certain information with trusted third-party service providers when necessary to deliver our services. These third parties may include cloud infrastructure providers, analytics platforms, cybersecurity tools, payment processors, or software integration partners. Such third parties are required to handle information in accordance with applicable data protection standards and only for the purposes necessary to provide the requested services.
+In some cases, Deeplenz may be required to disclose information if required by law, legal process, government request, or to protect the rights, property, or safety of Deeplenz, its clients, or other users. We may also disclose information when necessary to investigate potential fraud, security incidents, or violations of applicable laws or service agreements.
+Our website and services may contain links to third-party websites, platforms, or services that are not operated or controlled by Deeplenz. We are not responsible for the privacy practices or policies of such third-party services. Users are encouraged to review the privacy policies of any external websites they visit.
+Deeplenz retains personal and business information only for as long as necessary to fulfill the purposes described in this Privacy Policy, comply with legal obligations, resolve disputes, and enforce agreements. When information is no longer required, reasonable steps will be taken to securely delete or anonymize the data.
+Users may have the right, depending on applicable laws, to request access to the personal information we hold about them, request corrections, request deletion of their data, or object to certain types of data processing. Requests related to personal data may be submitted through the contact information provided on our website.
+Deeplenz may update this Privacy Policy from time to time to reflect changes in legal requirements, technology, or business operations. Any updates will be published on the website, and continued use of our website or services after such updates indicates acceptance of the revised Privacy Policy.
+If you have any questions regarding this Privacy Policy or how your information is handled, you may contact Deeplenz through the contact details provided on our website.
+              </h1>
             </main>
 
             <Footer />
