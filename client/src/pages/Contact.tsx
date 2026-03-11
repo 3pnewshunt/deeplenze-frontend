@@ -28,7 +28,7 @@ export default function Contact() {
     phone: '',
     company: '',
     service: '',
-    product: '',   
+    product: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -37,44 +37,44 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-  try {
-    const res = await fetch('http://localhost:3001/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const res = await fetch('http://localhost:3001/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    if (!res.ok) throw new Error('Failed');
+      if (!res.ok) throw new Error('Failed');
 
-    toast.success(
-      language === 'en'
-        ? "Message sent successfully! We'll get back to you soon."
-        : 'تم إرسال الرسالة بنجاح! سنتواصل معك قريباً.'
-    );
+      toast.success(
+        language === 'en'
+          ? "Message sent successfully!"
+          : 'تم إرسال الرسالة بنجاح! سنتواصل معك قريباً.'
+      );
 
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      service: '',
-      product: '',
-      message: '',
-    });
-  } catch {
-    toast.error(
-      language === 'en'
-        ? 'Something went wrong. Please try again.'
-        : 'حدث خطأ ما. يرجى المحاولة مرة أخرى.'
-    );
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        service: '',
+        product: '',
+        message: '',
+      });
+    } catch {
+      toast.error(
+        language === 'en'
+          ? 'Something went wrong. Please try again.'
+          : 'حدث خطأ ما. يرجى المحاولة مرة أخرى.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const services = language === 'en'
     ? [

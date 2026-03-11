@@ -5,10 +5,10 @@
 import HeroImage from "@/assets/images/herosection.png";
 import nalystLogo from "@/assets/images/nalyst.png";
 import newsHuntLogo from "@/assets/images/newshunt_logo.png";
-import kastLogo from "@/assets/images/ForeQast.jpg";
-import hr360Logo from "@/assets/images/QanoonHR.jpg";
+import kastLogo from "@/assets/images/ForeQast.svg";
+import hr360Logo from "@/assets/images/QanoonHr.svg";
 import khellaLogo from "@/assets/images/HoorLogo.svg";
-import assadLogo from "@/assets/images/DiraaLogo.jpg";
+import assadLogo from "@/assets/images/DiraaLogo.svg";
 import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -42,14 +42,14 @@ import {
 // Android SVG icon component
 const AndroidIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M17.523 15.341a.87.87 0 01-.87-.87V9.53a.87.87 0 011.74 0v4.94a.87.87 0 01-.87.87zm-11.046 0a.87.87 0 01-.87-.87V9.53a.87.87 0 011.74 0v4.94a.87.87 0 01-.87.87zm10.21-6.683H7.313a.348.348 0 00-.348.348v7.478c0 .192.156.348.348.348h.87v2.61a.87.87 0 001.74 0v-2.61h2.174v2.61a.87.87 0 001.74 0v-2.61h.87a.348.348 0 00.348-.348V9.006a.348.348 0 00-.348-.348zM8.948 6.695l-.826-1.431a.174.174 0 00-.3.174l.838 1.452a5.203 5.203 0 00-2.356 2.007h10.392A5.203 5.203 0 0014.34 6.89l.838-1.452a.174.174 0 10-.3-.174l-.826 1.431A5.16 5.16 0 0012 6.26a5.16 5.16 0 00-3.052.435z"/>
+    <path d="M17.523 15.341a.87.87 0 01-.87-.87V9.53a.87.87 0 011.74 0v4.94a.87.87 0 01-.87.87zm-11.046 0a.87.87 0 01-.87-.87V9.53a.87.87 0 011.74 0v4.94a.87.87 0 01-.87.87zm10.21-6.683H7.313a.348.348 0 00-.348.348v7.478c0 .192.156.348.348.348h.87v2.61a.87.87 0 001.74 0v-2.61h2.174v2.61a.87.87 0 001.74 0v-2.61h.87a.348.348 0 00.348-.348V9.006a.348.348 0 00-.348-.348zM8.948 6.695l-.826-1.431a.174.174 0 00-.3.174l.838 1.452a5.203 5.203 0 00-2.356 2.007h10.392A5.203 5.203 0 0014.34 6.89l.838-1.452a.174.174 0 10-.3-.174l-.826 1.431A5.16 5.16 0 0012 6.26a5.16 5.16 0 00-3.052.435z" />
   </svg>
 );
 
 // Apple SVG icon component
 const AppleIcon = ({ className }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11"/>
+    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11" />
   </svg>
 );
 
@@ -73,15 +73,15 @@ export default function Products() {
       },
       industries: language === 'en'
         ? [
-            { label: 'Government Organizations',        Icon: Building2,  color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
-            { label: 'Think Tanks',       Icon: Lightbulb,  color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
-            { label: 'Media Departments', Icon: Tv2,        color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
-          ]
+          { label: 'Government Organizations', Icon: Building2, color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
+          { label: 'Think Tanks', Icon: Lightbulb, color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
+          { label: 'Media Departments', Icon: Tv2, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+        ]
         : [
-            { label: 'الحكومة',    Icon: Building2, color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
-            { label: 'مراكز الفكر', Icon: Lightbulb, color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
-            { label: 'الإعلام',    Icon: Tv2,       color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
-          ],
+          { label: 'الحكومة', Icon: Building2, color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
+          { label: 'مراكز الفكر', Icon: Lightbulb, color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
+          { label: 'الإعلام', Icon: Tv2, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+        ],
       features: language === 'en'
         ? ['Real-time global news monitoring', 'Custom analytics dashboards', 'Entity extraction & trend detection', 'Multi-language news analysis']
         : ['معالجة البيانات في الوقت الفعلي', 'منشئ لوحات المعلومات المخصصة', 'رؤى تنبؤية', 'تكامل متعدد المصادر'],
@@ -101,15 +101,15 @@ export default function Products() {
       },
       industries: language === 'en'
         ? [
-           { label: 'Government Organizations',        Icon: Building2,  color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
-            { label: 'Think Tanks',       Icon: Lightbulb,  color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
-            { label: 'Media Departments', Icon: Tv2,        color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
-          ]
+          { label: 'Government Organizations', Icon: Building2, color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
+          { label: 'Think Tanks', Icon: Lightbulb, color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
+          { label: 'Media Departments', Icon: Tv2, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+        ]
         : [
-            { label: 'وكالات الأخبار', Icon: Newspaper, color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
-            { label: 'الصحفيون',       Icon: PenLine,   color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0' },
-            { label: 'الباحثون',       Icon: Search,    color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
-          ],
+          { label: 'وكالات الأخبار', Icon: Newspaper, color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
+          { label: 'الصحفيون', Icon: PenLine, color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0' },
+          { label: 'الباحثون', Icon: Search, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+        ],
       features: language === 'en'
         ? ['Global news & opinion aggregation', 'Multi-language news coverage', 'Personalized feeds & customization', 'Smart alerts and trending topics']
         : ['تجميع الأخبار بالذكاء الاصطناعي', 'تحليل المشاعر', 'اكتشاف الاتجاهات', 'تنبيهات وتقارير مخصصة'],
@@ -129,15 +129,15 @@ export default function Products() {
       },
       industries: language === 'en'
         ? [
-           { label: 'Government Organizations',        Icon: Building2,  color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
-            { label: 'Think Tanks',       Icon: Lightbulb,  color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
-            { label: 'Media Departments', Icon: Tv2,        color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
-          ]
+          { label: 'Government Organizations', Icon: Building2, color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
+          { label: 'Think Tanks', Icon: Lightbulb, color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
+          { label: 'Media Departments', Icon: Tv2, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+        ]
         : [
-            { label: 'الشركات', Icon: Building2, color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
-            { label: 'البنوك',   Icon: Landmark,  color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
-            { label: 'الدفاع',  Icon: Shield,    color: '#ef4444', bg: '#fef2f2', border: '#fecaca' },
-          ],
+          { label: 'الشركات', Icon: Building2, color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
+          { label: 'البنوك', Icon: Landmark, color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
+          { label: 'الدفاع', Icon: Shield, color: '#ef4444', bg: '#fef2f2', border: '#fecaca' },
+        ],
       features: language === 'en'
         ? ['AI-generated detection rules', 'Real-time intrusion detection & prevention', 'Advanced threat monitoring', 'Security analytics & alerts']
         : ['اكتشاف التهديدات والاستجابة', 'إدارة الثغرات', 'مراقبة الامتثال', 'تحليلات الأمان'],
@@ -157,15 +157,15 @@ export default function Products() {
       },
       industries: language === 'en'
         ? [
-            { label: 'Retail',        Icon: ShoppingBag,  color: '#ec4899', bg: '#fdf2f8', border: '#f9a8d4' },
-            { label: 'Beauty Brands', Icon: Star,         color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
-            { label: 'E-Commerce',    Icon: ShoppingCart, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
-          ]
+          { label: 'Retail', Icon: ShoppingBag, color: '#ec4899', bg: '#fdf2f8', border: '#f9a8d4' },
+          { label: 'Beauty Brands', Icon: Star, color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
+          { label: 'E-Commerce', Icon: ShoppingCart, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+        ]
         : [
-            { label: 'التجزئة',           Icon: ShoppingBag,  color: '#ec4899', bg: '#fdf2f8', border: '#f9a8d4' },
-            { label: 'العلامات التجارية', Icon: Star,         color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
-            { label: 'التجارة الإلكترونية', Icon: ShoppingCart, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
-          ],
+          { label: 'التجزئة', Icon: ShoppingBag, color: '#ec4899', bg: '#fdf2f8', border: '#f9a8d4' },
+          { label: 'العلامات التجارية', Icon: Star, color: '#a855f7', bg: '#faf5ff', border: '#d8b4fe' },
+          { label: 'التجارة الإلكترونية', Icon: ShoppingCart, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+        ],
       features: language === 'en'
         ? ['Beauty product price comparison', 'Multi-store product aggregation', 'Find nearest available shops', 'Smart product recommendations']
         : ['المراسلة الآمنة', 'مؤتمرات الفيديو', 'مشاركة الملفات والتعاون', 'مساعد الاجتماعات بالذكاء الاصطناعي'],
@@ -185,15 +185,15 @@ export default function Products() {
       },
       industries: language === 'en'
         ? [
-            { label: 'Retail Chains', Icon: Store,        color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0' },
-            { label: 'E-Commerce',    Icon: ShoppingCart, color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
-            { label: 'Logistics',     Icon: Truck,        color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
-          ]
+          { label: 'Retail Chains', Icon: Store, color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0' },
+          { label: 'E-Commerce', Icon: ShoppingCart, color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
+          { label: 'Logistics', Icon: Truck, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+        ]
         : [
-            { label: 'سلاسل البيع',         Icon: Store,        color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0' },
-            { label: 'التجارة الإلكترونية', Icon: ShoppingCart, color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
-            { label: 'اللوجستيات',          Icon: Truck,        color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
-          ],
+          { label: 'سلاسل البيع', Icon: Store, color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0' },
+          { label: 'التجارة الإلكترونية', Icon: ShoppingCart, color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
+          { label: 'اللوجستيات', Icon: Truck, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
+        ],
       features: language === 'en'
         ? ['Sales forecasting', 'Inventory demand prediction', 'Retail and e-commerce analytics', 'Smart inventory planning']
         : ['التنبؤ بالطلب', 'التنبؤ بالمخاطر', 'تحليل السوق', 'تخطيط السيناريوهات'],
@@ -213,15 +213,15 @@ export default function Products() {
       },
       industries: language === 'en'
         ? [
-            { label: 'Corporations',    Icon: Network,   color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
-            { label: 'HR Departments',  Icon: Users,     color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
-            { label: 'Saudi Enterprises', Icon: Flag,    color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0' },
-          ]
+          { label: 'Corporations', Icon: Network, color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
+          { label: 'HR Departments', Icon: Users, color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
+          { label: 'Saudi Enterprises', Icon: Flag, color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0' },
+        ]
         : [
-            { label: 'الشركات الكبرى',      Icon: Network, color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
-            { label: 'الموارد البشرية',     Icon: Users,   color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
-            { label: 'المؤسسات السعودية',   Icon: Flag,    color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0' },
-          ],
+          { label: 'الشركات الكبرى', Icon: Network, color: '#6366f1', bg: '#ede9fe', border: '#c4b5fd' },
+          { label: 'الموارد البشرية', Icon: Users, color: '#0ea5e9', bg: '#f0f9ff', border: '#bae6fd' },
+          { label: 'المؤسسات السعودية', Icon: Flag, color: '#10b981', bg: '#f0fdf4', border: '#a7f3d0' },
+        ],
       features: language === 'en'
         ? ['Employee lifecycle management', 'Payroll & benefits automation', 'Performance tracking & evaluation', 'Compliance with Saudi labor regulations']
         : ['إدارة دورة حياة الموظف', 'تتبع الأداء', 'أتمتة الرواتب', 'التعلم والتطوير'],
@@ -272,7 +272,7 @@ export default function Products() {
             {products.map((product, index) => (
               <motion.div
                 key={product.id}
-                className={`group relative rounded-2xl overflow-hidden bg-white border border-[#32a7b5]/15 hover:border-[#32a7b5]/60 transition-all duration-500 flex flex-col h-[560px] ${dir === 'rtl' ? 'text-right' : ''}`}
+                className={`group relative rounded-2xl overflow-hidden bg-white border border-[#32a7b5]/15 hover:border-[#32a7b5]/60 transition-all duration-500 flex flex-col h-[610px] md:h-[560px] ${dir === 'rtl' ? 'text-right' : ''}`}
                 style={{ boxShadow: '0 4px 24px rgba(50,167,181,0.08)' }}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -363,7 +363,7 @@ export default function Products() {
                         className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border transition-all duration-200 hover:scale-105"
                         style={{ backgroundColor: '#f5f5f5', borderColor: '#d4d4d4', color: '#404040' }}>
                         <AppleIcon className="w-4.5 h-4.5" />
-                        <span className="text-[10px] font-bold">iOS</span>
+                        <span className="text-[10px] font-bold">IOS</span>
                       </a>
                     )}
 
@@ -392,9 +392,9 @@ export default function Products() {
                       <motion.button
                         className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white text-[#32a7b5] font-bold text-xs sm:text-sm rounded-xl border-2 border-[#32a7b5] hover:bg-[#32a7b5] hover:text-white transition-all duration-300 ${dir === 'rtl' ? 'flex-row-reverse font-arabic' : 'font-body'}`}
                         whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                        <Globe size={14} className="flex-shrink-0" />
+                        {/* <Globe size={14} className="flex-shrink-0" />  */}
                         <span>{language === 'en' ? 'Visit' : 'زيارة'}</span>
-                        <ExternalLink size={12} className="flex-shrink-0" />
+                        <ExternalLink size={15} className="flex-shrink-0" />
                       </motion.button>
                     </a>
                   </div>

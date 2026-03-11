@@ -1,8 +1,10 @@
+import "dotenv/config";
 import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
 import nodemailer from "nodemailer";
+import cors from "cors";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,6 +13,7 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
 
+  app.use(cors());
   app.use(express.json());
 
   // Nodemailer transporter
@@ -29,7 +32,8 @@ async function startServer() {
     const { name, email, phone, company, service, product, message } = req.body;
 
     try {
-      await transporter.sendMail({
+      console.log("Attempting to send email...");
+      const info = await transporter.sendMail({
         from: process.env.SMTP_FROM,
         to: process.env.CONTACT_EMAIL,
         subject: `New Contact: ${name} - ${company || "N/A"}`,
@@ -44,11 +48,12 @@ async function startServer() {
           <p><b>Message:</b> ${message}</p>
         `,
       });
+      console.log("Email sent successfully:", info.messageId);
 
       res.status(200).json({ success: true });
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ success: false, message: "Failed to send email." });
+      console.error("NodeMailer Error:", err);
+      res.status(500).json({ success: false, message: "Failed to send email.", error: err instanceof Error ? err.message : String(err) });
     }
   });
 

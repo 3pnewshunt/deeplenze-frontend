@@ -6,8 +6,8 @@
 import { Link } from "wouter";
 import { useRef } from "react";
 
-import { useState, useEffect } from "react"; 
-import { motion,useInView } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
 // import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Header from "@/components/Header";
@@ -38,14 +38,14 @@ import HeroImage from "@/assets/images/herosection.png";
 // logs
 import nalystLogo from "@/assets/images/nalyst.png";
 import newsHuntLogo from "@/assets/images/newshunt_logo.png";
-import kastLogo from "@/assets/images/ForeQast.jpg";
-import hr360Logo from "@/assets/images/QanoonHR.jpg";
+import kastLogo from "@/assets/images/ForeQast.svg";
+import hr360Logo from "@/assets/images/QanoonHr.svg";
 import khellaLogo from "@/assets/images/HoorLogo.svg";
-import assadLogo from "@/assets/images/DiraaLogo.jpg";
+import assadLogo from "@/assets/images/DiraaLogo.svg";
 import AI_IMG from "@/assets/images/AI.png";
 import CYBER_IMG from "@/assets/images/CyberSecurity.png";
-import DIGITAL_IMG  from "@/assets/images/DigitalTransformation.png";
-import AWS  from "@/assets/images/AWSCloudManagement.png";
+import DIGITAL_IMG from "@/assets/images/DigitalTransformation.png";
+import AWS from "@/assets/images/AWSCloudManagement.png";
 const galleryImages = [
   AI_IMG,
   CYBER_IMG,
@@ -59,16 +59,16 @@ const galleryImages = [
   CYBER_IMG,
   DIGITAL_IMG,
   AWS,
- 
+
 ];
-  const spans = [
-    "col-span-6 md:col-span-4",
-    "col-span-6 md:col-span-4",
-    "col-span-12 md:col-span-4",
-    "col-span-6 md:col-span-3",
-    "col-span-6 md:col-span-6",
-    "col-span-12 md:col-span-3",
-  ];
+const spans = [
+  "col-span-6 md:col-span-4",
+  "col-span-6 md:col-span-4",
+  "col-span-12 md:col-span-4",
+  "col-span-6 md:col-span-3",
+  "col-span-6 md:col-span-6",
+  "col-span-12 md:col-span-3",
+];
 
 
 const SMART_IMG =
@@ -110,7 +110,7 @@ export default function Home() {
   const { t, dir, language } = useLanguage();
   const ArrowIcon = dir === "rtl" ? ArrowLeft : ArrowRight;
   const ChevronIcon = dir === "rtl" ? ChevronLeft : ChevronRight;
-const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const services = [
     {
       icon: Brain,
@@ -150,7 +150,7 @@ const [selectedImage, setSelectedImage] = useState<string | null>(null);
       name: t("products.nalyst.name"),
       description: t("products.nalyst.description"),
       icon: nalystLogo,
-      url: "https://newshunt-sensika.vercel.app/en", 
+      url: "https://newshunt-sensika.vercel.app/en",
     },
     {
       name: t("products.newshunt.name"),
@@ -163,23 +163,23 @@ const [selectedImage, setSelectedImage] = useState<string | null>(null);
       description: t("products.asaad.description"),
       icon: assadLogo,
       // url: "/products/asaad", 
-     
+
       // placeholder, change later
     },
     {
       name: t("products.khella.name"),
       description: t("products.khella.description"),
-   
+
       // url: "/products/khella", 
       icon: khellaLogo,
-     // placeholder, change later
+      // placeholder, change later
     },
     {
       name: t("products.4kast.name"),
       description: t("products.4kast.description"),
       // url: "/products/4kast", 
       icon: kastLogo,
-     // placeholder, change later
+      // placeholder, change later
     },
     {
       name: t("products.hr360.name"),
@@ -240,232 +240,227 @@ const [selectedImage, setSelectedImage] = useState<string | null>(null);
   ];
 
 
-const FloatingProducts = ({
-  products,
-  color = "#1c7f87",
-  repeat = 3,
-}: {
-  products: string[];
-  color?: string;
-  repeat?: number;
-}) => {
-  const repeatedProducts = Array.from({ length: repeat }).flatMap(() => products);
+  const FloatingProducts = ({
+    products,
+    color = "#1c7f87",
+    repeat = 3,
+  }: {
+    products: string[];
+    color?: string;
+    repeat?: number;
+  }) => {
+    const repeatedProducts = Array.from({ length: repeat }).flatMap(() => products);
 
-  // store used positions to avoid collision
-  const positions: { top: number; left: number }[] = [];
+    // store used positions to avoid collision
+    const positions: { top: number; left: number }[] = [];
 
-  const getSafePosition = () => {
-    let top: number, left: number, attempts = 0;
+    const getSafePosition = () => {
+      let top: number, left: number, attempts = 0;
 
-    do {
-      top = 10 + Math.random() * 80; // 10%-90%
-      left = 10 + Math.random() * 80; // 10%-90%
-      attempts++;
-    } while (
-      positions.some(
-        (pos) =>
-          Math.abs(pos.top - top) < 12 && // vertical spacing
-          Math.abs(pos.left - left) < 20 // horizontal spacing
-      ) &&
-      attempts < 100
+      do {
+        top = 10 + Math.random() * 80; // 10%-90%
+        left = 10 + Math.random() * 80; // 10%-90%
+        attempts++;
+      } while (
+        positions.some(
+          (pos) =>
+            Math.abs(pos.top - top) < 12 && // vertical spacing
+            Math.abs(pos.left - left) < 20 // horizontal spacing
+        ) &&
+        attempts < 100
+      );
+
+      positions.push({ top, left });
+      return { top, left };
+    };
+
+    return (
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {repeatedProducts.map((product, index) => {
+          const { top, left } = getSafePosition();
+
+          const rotateStart = -15 + Math.random() * 30; // small tilt
+          const xAmplitude = 15 + Math.random() * 25; // small horizontal float
+          const yAmplitude = 15 + Math.random() * 25; // small vertical float
+          const direction = Math.random() > 0.5 ? 1 : -1;
+
+          return (
+            <motion.div
+              key={index}
+              className="absolute font-bold text-2xl md:text-4xl whitespace-nowrap"
+              style={{
+                top: `${top}%`,
+                left: `${left}%`,
+                color: color,
+                opacity: 0.16,
+                rotate: `${rotateStart}deg`,
+              }}
+              animate={{
+                y: [0, yAmplitude * direction, 0],
+                x: [0, xAmplitude * -direction, 0],
+                rotate: [rotateStart, rotateStart + 8 * direction, rotateStart],
+              }}
+              transition={{
+                duration: 18 + Math.random() * 10,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            >
+              {product}
+            </motion.div>
+          );
+        })}
+      </div>
     );
-
-    positions.push({ top, left });
-    return { top, left };
   };
 
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {repeatedProducts.map((product, index) => {
-        const { top, left } = getSafePosition();
-
-        const rotateStart = -15 + Math.random() * 30; // small tilt
-        const xAmplitude = 15 + Math.random() * 25; // small horizontal float
-        const yAmplitude = 15 + Math.random() * 25; // small vertical float
-        const direction = Math.random() > 0.5 ? 1 : -1;
-
-        return (
-          <motion.div
-            key={index}
-            className="absolute font-bold text-2xl md:text-4xl whitespace-nowrap"
-            style={{
-              top: `${top}%`,
-              left: `${left}%`,
-              color: color,
-              opacity: 0.16,
-              rotate: `${rotateStart}deg`,
-            }}
-            animate={{
-              y: [0, yAmplitude * direction, 0],
-              x: [0, xAmplitude * -direction, 0],
-              rotate: [rotateStart, rotateStart + 8 * direction, rotateStart],
-            }}
-            transition={{
-              duration: 18 + Math.random() * 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            {product}
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-};
 
 
+  const productNames = [
+    t("products.nalyst.name"),
+    t("products.newshunt.name"),
+    t("products.asaad.name"),
+    t("products.khella.name"),
+    t("products.4kast.name"),
+    t("products.hr360.name"),
+  ];
 
-const productNames = [
-  t("products.nalyst.name"),
-  t("products.newshunt.name"),
-  t("products.asaad.name"),
-  t("products.khella.name"),
-  t("products.4kast.name"),
-  t("products.hr360.name"),
-];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardWidth, setCardWidth] = useState(220);
 
-const [currentIndex, setCurrentIndex] = useState(0);
-const [cardWidth, setCardWidth] = useState(220);
+  useEffect(() => {
+    const updateWidth = () => {
+      setCardWidth(window.innerWidth < 768 ? window.innerWidth - 112 : 220);
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
 
-useEffect(() => {
-  const updateWidth = () => {
-    setCardWidth(window.innerWidth < 768 ? window.innerWidth - 112 : 220);
-  };
-  updateWidth();
-  window.addEventListener('resize', updateWidth);
-  return () => window.removeEventListener('resize', updateWidth);
-}, []);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % products.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [products.length]);
 
-useEffect(() => {
-  const timer = setInterval(() => {
-    setCurrentIndex((prev) => (prev + 1) % products.length);
-  }, 3000);
-  return () => clearInterval(timer);
-}, [products.length]);
-
-const goNext = () => setCurrentIndex((prev) => (prev + 1) % products.length);
-const goPrev = () => setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+  const goNext = () => setCurrentIndex((prev) => (prev + 1) % products.length);
+  const goPrev = () => setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
   return (
     <div className="min-h-screen bg-background text-foreground font-body">
       <Header />
 
       {/* Hero Section */}
-   
-<section className="relative min-h-[90vh] flex bg-cover items-center overflow-hidden">
-  {/* Background Image with Smooth Zoom */}
-  <motion.div
-    className="absolute inset-0"
-    initial={{ scale: 1.1 }}
-    animate={{ scale: 1 }}
-    transition={{ duration: 6, ease: "easeOut" }}
-  >
-    <img
-      src={HeroImage}
-      alt="Hero Background"
-      className="w-full h-full object-cover"
-    />
-    {/* Blue semi-transparent dark overlay */}
-    <div className="absolute inset-0 bg-blue-900/40"></div>
-  </motion.div>
 
-  <FloatingProducts
-    products={productNames}
-    color="#1c7f87"
-    repeat={2}
-  />
-
-  <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
-    <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-
-      {/* Badge */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        
-      </motion.div>
-
-      {/* Typing Title */}
-      <motion.h1
-        className={`text-3xl sm:text-4xl md:text-6xl text-center lg:text-7xl xl:text-8xl font-bold leading-tight mb-6 ${
-          dir === "rtl" ? "font-arabic" : "font-display"
-        }`}
-      >
-        <div className="block text-white">
-          <TypingText text={t("hero.title")} delayOffset={0.5} />
-        </div>
-
-        <div className="text-4xl md:text-5xl lg:text-6xl text-white mt-4">
-          <TypingText
-            text={t("hero.subtitle")}
-            delayOffset={0.5 + t("hero.title").length * 0.035}
+      <section className="relative min-h-[90vh] flex bg-cover items-center overflow-hidden">
+        {/* Background Image with Smooth Zoom */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 6, ease: "easeOut" }}
+        >
+          <img
+            src={HeroImage}
+            alt="Hero Background"
+            className="w-full h-full object-cover"
           />
+          {/* Blue semi-transparent dark overlay */}
+          <div className="absolute inset-0 bg-blue-900/40"></div>
+        </motion.div>
+
+        <FloatingProducts
+          products={productNames}
+          color="#1c7f87"
+          repeat={2}
+        />
+
+        <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
+          <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+
+            </motion.div>
+
+            {/* Typing Title */}
+            <motion.h1
+              className={`text-3xl sm:text-4xl md:text-6xl text-center lg:text-7xl xl:text-8xl font-bold leading-tight mb-6 ${dir === "rtl" ? "font-arabic" : "font-display"
+                }`}
+            >
+              <div className="block text-white">
+                <TypingText text={t("hero.title")} delayOffset={0.5} />
+              </div>
+
+              <div className="text-4xl md:text-5xl lg:text-6xl text-white mt-4">
+                <TypingText
+                  text={t("hero.subtitle")}
+                  delayOffset={0.5 + t("hero.title").length * 0.035}
+                />
+              </div>
+            </motion.h1>
+
+            {/* Description */}
+            <motion.p
+              className={`text-lg md:text-xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed ${dir === "rtl" ? "font-arabic" : "font-body"
+                }`}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay:
+                  0.8 + t("hero.title").length * 0.035 +
+                  t("hero.subtitle").length * 0.02,
+                duration: 0.8,
+              }}
+            >
+              {t("hero.description")}
+            </motion.p>
+
+            {/* Buttons */}
+            <motion.div
+              className={`flex flex-wrap gap-4 justify-center ${dir === "rtl" ? "flex-row-reverse" : ""
+                }`}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay:
+                  1 +
+                  t("hero.title").length * 0.035 +
+                  t("hero.subtitle").length * 0.02,
+              }}
+            >
+              <Link href="/services">
+                <motion.button
+                  className={`group flex items-center gap-2 px-8 py-4 bg-[#32a7b5] text-white font-bold rounded-xl shadow-lg hover:bg-[#2a8f9a] transition-all duration-300 ${dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"
+                    }`}
+                  whileHover={{ scale: 1.05, y: -4 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {t("hero.cta.services")}
+                  <ArrowIcon className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                </motion.button>
+              </Link>
+
+              <Link href="/contact">
+                <motion.button
+                  className={`flex items-center gap-2 px-8 py-4 border-2 border-[#32a7b5] text-white font-bold rounded-xl hover:bg-[#32a7b5]/10 transition-all duration-300 ${dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"
+                    }`}
+                  whileHover={{ scale: 1.05, y: -4 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {t("hero.cta.contact")}
+                </motion.button>
+              </Link>
+            </motion.div>
+
+          </div>
         </div>
-      </motion.h1>
-
-      {/* Description */}
-      <motion.p
-        className={`text-lg md:text-xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed ${
-          dir === "rtl" ? "font-arabic" : "font-body"
-        }`}
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          delay:
-            0.8 + t("hero.title").length * 0.035 +
-            t("hero.subtitle").length * 0.02,
-          duration: 0.8,
-        }}
-      >
-        {t("hero.description")}
-      </motion.p>
-
-      {/* Buttons */}
-      <motion.div
-        className={`flex flex-wrap gap-4 justify-center ${
-          dir === "rtl" ? "flex-row-reverse" : ""
-        }`}
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          delay:
-            1 +
-            t("hero.title").length * 0.035 +
-            t("hero.subtitle").length * 0.02,
-        }}
-      >
-        <Link href="/services">
-          <motion.button
-            className={`group flex items-center gap-2 px-8 py-4 bg-[#32a7b5] text-white font-bold rounded-xl shadow-lg hover:bg-[#2a8f9a] transition-all duration-300 ${
-              dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"
-            }`}
-            whileHover={{ scale: 1.05, y: -4 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {t("hero.cta.services")}
-            <ArrowIcon className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-          </motion.button>
-        </Link>
-
-        <Link href="/contact">
-          <motion.button
-            className={`flex items-center gap-2 px-8 py-4 border-2 border-[#32a7b5] text-white font-bold rounded-xl hover:bg-[#32a7b5]/10 transition-all duration-300 ${
-              dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"
-            }`}
-            whileHover={{ scale: 1.05, y: -4 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {t("hero.cta.contact")}
-          </motion.button>
-        </Link>
-      </motion.div>
-
-    </div>
-  </div>
-</section>
+      </section>
 
 
 
@@ -479,7 +474,7 @@ const goPrev = () => setCurrentIndex((prev) => (prev - 1 + products.length) % pr
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false }}
           >
-      
+
             <h2
               className={`text-4xl md:text-5xl font-bold text-slate-800 mb-6 ${dir === "rtl" ? "font-arabic" : "font-display"}`}
             >
@@ -551,24 +546,24 @@ const goPrev = () => setCurrentIndex((prev) => (prev - 1 + products.length) % pr
 
 
 
-{/* Products Section */}
-<section className="py-24 relative bg-slate-100 overflow-hidden">
+      {/* Products Section */}
+      <section className="py-24 relative bg-slate-100 overflow-hidden">
 
-  {/* Decorative blobs */}
-  <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#32a7b5]/5 rounded-full blur-3xl pointer-events-none" />
-  <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#32a7b5]/5 rounded-full blur-3xl pointer-events-none" />
+        {/* Decorative blobs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#32a7b5]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#32a7b5]/5 rounded-full blur-3xl pointer-events-none" />
 
-  <div className="container mx-auto px-4 relative">
+        <div className="container mx-auto px-4 relative">
 
-    {/* Section Heading */}
-    <motion.div
-      className={`text-center mb-16 max-w-3xl mx-auto ${dir === "rtl" ? "font-arabic" : ""}`}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
-      transition={{ duration: 0.7 }}
-    >
-      {/* <motion.span
+          {/* Section Heading */}
+          <motion.div
+            className={`text-center mb-16 max-w-3xl mx-auto ${dir === "rtl" ? "font-arabic" : ""}`}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.7 }}
+          >
+            {/* <motion.span
         className="inline-block px-4 py-2 rounded-full bg-[#32A7B51A] text-[#32a7b5] text-sm font-bold mb-4 uppercase tracking-wider"
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -577,218 +572,213 @@ const goPrev = () => setCurrentIndex((prev) => (prev - 1 + products.length) % pr
       >
         {language === "en" ? "Our Products" : "منتجاتنا"}
       </motion.span> */}
-      <h2 className={`text-4xl md:text-5xl font-bold text-slate-700 mb-6 ${dir === "rtl" ? "font-arabic" : "font-display"}`}>
-        {t("products.title")}
-      </h2>
-      <p className={`text-slate-600 text-lg ${dir === "rtl" ? "font-arabic" : "font-body"}`}>
-        {t("products.subtitle")}
-      </p>
-    </motion.div>
+            <h2 className={`text-4xl md:text-5xl font-bold text-slate-700 mb-6 ${dir === "rtl" ? "font-arabic" : "font-display"}`}>
+              {t("products.title")}
+            </h2>
+            <p className={`text-slate-600 text-lg ${dir === "rtl" ? "font-arabic" : "font-body"}`}>
+              {t("products.subtitle")}
+            </p>
+          </motion.div>
 
-    {/* Slider Container */}
-    <div className="relative px-14">
+          {/* Slider Container */}
+          <div className="relative px-14">
 
-      {/* Prev Button - RTL mein right side pe */}
-      <motion.button
-        onClick={dir === 'rtl' ? goNext : goPrev}
-        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-xl border border-[#32a7b5]/20 flex items-center justify-center text-[#32a7b5] hover:bg-[#32a7b5] hover:text-white transition-all duration-300"
-        whileHover={{ scale: 1.15 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </motion.button>
-
-      {/* Next Button - RTL mein left side pe */}
-      <motion.button
-        onClick={dir === 'rtl' ? goPrev : goNext}
-        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-xl border border-[#32a7b5]/20 flex items-center justify-center text-[#32a7b5] hover:bg-[#32a7b5] hover:text-white transition-all duration-300"
-        whileHover={{ scale: 1.15 }}
-        whileTap={{ scale: 0.9 }}
-      >
-        <ChevronRight className="w-6 h-6" />
-      </motion.button>
-
-      {/* Track */}
-      <div className="overflow-hidden rounded-2xl">
-        <motion.div
-          className="flex gap-6"
-          animate={{
-            x: dir === 'rtl'
-              ? `${currentIndex * (typeof window !== 'undefined' && window.innerWidth < 768 ? window.innerWidth - 112 + 24 : 220 + 24)}px`
-              : `-${currentIndex * (typeof window !== 'undefined' && window.innerWidth < 768 ? window.innerWidth - 112 + 24 : 220 + 24)}px`
-          }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {[...products, ...products, ...products].map((product, index) => (
-            <motion.a
-              key={index}
-              href={product.url || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-shrink-0 w-[calc(100vw-8rem)] md:w-52 h-52 group relative cursor-pointer"
-              whileHover={{ y: -8, scale: 1.05 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+            {/* Prev Button - RTL mein right side pe */}
+            <motion.button
+              onClick={dir === 'rtl' ? goNext : goPrev}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-xl border border-[#32a7b5]/20 flex items-center justify-center text-[#32a7b5] hover:bg-[#32a7b5] hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
             >
-              {/* Card */}
-              <div className="w-full h-full bg-white border border-[#32a7b5]/10 shadow-md group-hover:shadow-2xl transition-all duration-400 flex items-center justify-center overflow-hidden relative">
+              <ChevronLeft className="w-6 h-6" />
+            </motion.button>
 
-                {/* Hover glow bg */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#32a7b5]/0 to-[#32a7b5]/0 transition-all duration-500" />
+            {/* Next Button - RTL mein left side pe */}
+            <motion.button
+              onClick={dir === 'rtl' ? goPrev : goNext}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-xl border border-[#32a7b5]/20 flex items-center justify-center text-[#32a7b5] hover:bg-[#32a7b5] hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </motion.button>
 
-                {/* Top teal bar on hover */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#32a7b5]/0 via-[#32a7b5] to-[#32a7b5]/0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            {/* Track */}
+            <div className="overflow-hidden rounded-2xl">
+              <motion.div
+                className="flex gap-6"
+                animate={{
+                  x: dir === 'rtl'
+                    ? `${currentIndex * (typeof window !== 'undefined' && window.innerWidth < 768 ? window.innerWidth - 112 + 24 : 220 + 24)}px`
+                    : `-${currentIndex * (typeof window !== 'undefined' && window.innerWidth < 768 ? window.innerWidth - 112 + 24 : 220 + 24)}px`
+                }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {[...products, ...products, ...products].map((product, index) => (
+                  <motion.a
+                    key={index}
+                    href={product.url || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-shrink-0 w-[calc(100vw-8rem)] md:w-52 h-52 group relative cursor-pointer"
+                    whileHover={{ y: -8, scale: 1.05 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    {/* Card */}
+                    <div className="w-full h-full bg-white border border-[#32a7b5]/10 shadow-md group-hover:shadow-2xl transition-all duration-400 flex items-center justify-center overflow-hidden relative">
 
-                {/* Floating logo */}
-                <motion.img
-                  src={product.icon}
-                  alt={product.name}
-                  className="w-40 h-40 p-3 object-contain relative z-10"
-                  style={{ mixBlendMode: 'multiply' }}
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{
-                    duration: 3.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: (index % products.length) * 0.4,
-                  }}
-                />
-              </div>
-            </motion.a>
-          ))}
-        </motion.div>
-      </div>
+                      {/* Hover glow bg */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#32a7b5]/0 to-[#32a7b5]/0 transition-all duration-500" />
 
-      {/* Fade edges */}
-      <div className="absolute left-12 top-0 h-full w-10 bg-gradient-to-r from-slate-100 to-transparent pointer-events-none z-10" />
-      <div className="absolute right-12 top-0 h-full w-10 bg-gradient-to-l from-slate-100 to-transparent pointer-events-none z-10" />
-    </div>
+                      {/* Top teal bar on hover */}
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#32a7b5]/0 via-[#32a7b5] to-[#32a7b5]/0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-    {/* Dots */}
-    <div className="flex justify-center gap-2 mt-10">
-      {products.map((_, i) => (
-        <motion.button
-          key={i}
-          className={`h-2 rounded-full transition-all duration-300 ${
-            i === currentIndex
-              ? 'w-8 bg-[#32a7b5]'
-              : 'w-2 bg-[#32a7b5]/25 hover:bg-[#32a7b5]/50'
-          }`}
-          onClick={() => setCurrentIndex(i)}
-          whileTap={{ scale: 0.9 }}
-        />
-      ))}
-    </div>
+                      {/* Floating logo */}
+                      <motion.img
+                        src={product.icon}
+                        alt={product.name}
+                        className="w-40 h-40 p-3 object-contain relative z-10"
+                        style={{ mixBlendMode: 'multiply' }}
+                        animate={{ y: [0, -6, 0] }}
+                        transition={{
+                          duration: 3.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: (index % products.length) * 0.4,
+                        }}
+                      />
+                    </div>
+                  </motion.a>
+                ))}
+              </motion.div>
+            </div>
 
-    {/* View All Button */}
-    <motion.div
-      className="text-center mt-12"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
-      transition={{ duration: 0.7 }}
-    >
-      <Link href="/products">
-        <motion.button
-          className={`inline-flex items-center gap-2 px-8 py-4 bg-[#32A7B5] text-white rounded-xl font-bold transition-colors shadow-lg shadow-[#32a7b5]/20 ${dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"}`}
-          whileHover={{ scale: 1.05, y: -3, boxShadow: '0 20px 40px rgba(50,167,181,0.3)' }}
-          whileTap={{ scale: 0.95 }}
+            {/* Fade edges */}
+            <div className="absolute left-12 top-0 h-full w-10 bg-gradient-to-r from-slate-100 to-transparent pointer-events-none z-10" />
+            <div className="absolute right-12 top-0 h-full w-10 bg-gradient-to-l from-slate-100 to-transparent pointer-events-none z-10" />
+          </div>
+
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-10">
+            {products.map((_, i) => (
+              <motion.button
+                key={i}
+                className={`h-2 rounded-full transition-all duration-300 ${i === currentIndex
+                  ? 'w-8 bg-[#32a7b5]'
+                  : 'w-2 bg-[#32a7b5]/25 hover:bg-[#32a7b5]/50'
+                  }`}
+                onClick={() => setCurrentIndex(i)}
+                whileTap={{ scale: 0.9 }}
+              />
+            ))}
+          </div>
+
+          {/* View All Button */}
+          <motion.div
+            className="text-center mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.7 }}
+          >
+            <Link href="/products">
+              <motion.button
+                className={`inline-flex items-center gap-2 px-8 py-4 bg-[#32A7B5] text-white rounded-xl font-bold transition-colors shadow-lg shadow-[#32a7b5]/20 ${dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"}`}
+                whileHover={{ scale: 1.05, y: -3, boxShadow: '0 20px 40px rgba(50,167,181,0.3)' }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {t("common.viewAll")}
+                <ChevronIcon className="w-5 h-5" />
+              </motion.button>
+            </Link>
+          </motion.div>
+
+        </div>
+      </section>
+
+
+      <section className="py-24 bg-slate-100">
+        {/* Section Heading */}
+        <motion.div
+          className={`text-center mb-16 max-w-3xl mx-auto ${dir === "rtl" ? "font-arabic" : ""
+            }`}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
         >
-          {t("common.viewAll")}
-          <ChevronIcon className="w-5 h-5" />
-        </motion.button>
-      </Link>
-    </motion.div>
-
-  </div>
-</section>
-
-
-  <section className="py-24 bg-slate-100">
-      {/* Section Heading */}
-      <motion.div
-        className={`text-center mb-16 max-w-3xl mx-auto ${
-          dir === "rtl" ? "font-arabic" : ""
-        }`}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false }}
-      >
-        {/* <span className="inline-block px-4 py-2 rounded-full bg-[#32A7B51A] text-[#32a7b5] text-sm font-bold mb-4 uppercase tracking-wider">
+          {/* <span className="inline-block px-4 py-2 rounded-full bg-[#32A7B51A] text-[#32a7b5] text-sm font-bold mb-4 uppercase tracking-wider">
           {language === "en" ? "Gallery" : "المعرض"}
         </span> */}
 
-        <h2
-          className={`text-4xl md:text-5xl font-bold text-slate-800 mb-6 ${
-            dir === "rtl" ? "font-arabic" : "font-display"
-          }`}
-        >
-          {language === "en" ? "Our Products Gallery" : "معرض منتجاتنا"}
-        </h2>
-
-        <p
-          className={`text-slate-700 text-lg ${
-            dir === "rtl" ? "font-arabic" : "font-body"
-          }`}
-        >
-          {language === "en"
-            ? "Explore visuals of our innovative solutions and digital transformation services."
-            : "استكشف صور حلولنا المبتكرة وخدمات التحول الرقمي."}
-        </p>
-      </motion.div>
-
-      {/* Gallery Grid */}
-      <div className="grid grid-cols-12 gap-3 mx-8 md:mx-12 lg:mx-16">
-        {galleryImages.map((img, index) => (
-          <motion.div
-            key={index}
-            className={`relative group cursor-pointer overflow-hidden ${
-              spans[index % spans.length]
-            }`}
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.6, delay: index * 0.05 }}
-            whileHover={{ scale: 1.02 }}
-            onClick={() => setSelectedImage(img)}
+          <h2
+            className={`text-4xl md:text-5xl font-bold text-slate-800 mb-6 ${dir === "rtl" ? "font-arabic" : "font-display"
+              }`}
           >
-            <img
-              src={img}
-              alt={`Gallery ${index}`}
-              className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
-            />
+            {language === "en" ? "Our Products Gallery" : "معرض منتجاتنا"}
+          </h2>
 
-            {/* Hover Overlay */}
+          <p
+            className={`text-slate-700 text-lg ${dir === "rtl" ? "font-arabic" : "font-body"
+              }`}
+          >
+            {language === "en"
+              ? "Explore visuals of our innovative solutions and digital transformation services."
+              : "استكشف صور حلولنا المبتكرة وخدمات التحول الرقمي."}
+          </p>
+        </motion.div>
+
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-12 gap-3 mx-8 md:mx-12 lg:mx-16">
+          {galleryImages.map((img, index) => (
             <motion.div
-              className="absolute inset-0 bg-[#32a7b5]/70 opacity-0 group-hover:opacity-100 flex items-center justify-center"
-              transition={{ duration: 0.3 }}
+              key={index}
+              className={`relative group cursor-pointer overflow-hidden ${spans[index % spans.length]
+                }`}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.6, delay: index * 0.05 }}
+              whileHover={{ scale: 1.02 }}
+              onClick={() => setSelectedImage(img)}
             >
-              <span className="text-white font-bold text-lg">
-                {language === "en" ? "View Image" : "عرض الصورة"}
-              </span>
-            </motion.div>
-          </motion.div>
-        ))}
-      </div>
+              <img
+                src={img}
+                alt={`Gallery ${index}`}
+                className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
+              />
 
-      {/* Lightbox / Modal */}
-      {selectedImage && (
-        <div className="fixed inset-0 bg-gray-50 bg-opacity-70 flex items-center justify-center z-50">
-          <div className="relative max-w-3xl mx-4 md:mx-0">
-            <img
-              src={selectedImage}
-              alt="Selected"
-              className="w-full max-h-[80vh] object-contain rounded"
-            />
-            <button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-2 right-2 text-white text-2xl font-bold p-2 hover:text-gray-300"
-            >
-              &times;
-            </button>
-          </div>
+              {/* Hover Overlay */}
+              <motion.div
+                className="absolute inset-0 bg-[#32a7b5]/70 opacity-0 group-hover:opacity-100 flex items-center justify-center"
+                transition={{ duration: 0.3 }}
+              >
+                <span className="text-white font-bold text-lg">
+                  {language === "en" ? "View Image" : "عرض الصورة"}
+                </span>
+              </motion.div>
+            </motion.div>
+          ))}
         </div>
-      )}
-    </section>
+
+        {/* Lightbox / Modal */}
+        {selectedImage && (
+          <div className="fixed inset-0 bg-gray-50 bg-opacity-70 flex items-center justify-center z-50">
+            <div className="relative max-w-3xl mx-4 md:mx-0">
+              <img
+                src={selectedImage}
+                alt="Selected"
+                className="w-full max-h-[80vh] object-contain rounded"
+              />
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-2 right-2 text-white text-2xl font-bold p-2 hover:text-gray-300"
+              >
+                &times;
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
 
 
 
@@ -801,7 +791,7 @@ const goPrev = () => setCurrentIndex((prev) => (prev - 1 + products.length) % pr
             className={`text-center mb-16 max-w-3xl mx-auto ${dir === "rtl" ? "font-arabic" : ""}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false}}
+            viewport={{ once: false }}
           >
             {/* <span className="inline-block px-4 py-2 rounded-full bg-[#32A7B51A] text-[#32a7b5] text-sm font-bold mb-4 uppercase tracking-wider">
               {language === "en" ? "Sectors" : "القطاعات"}
@@ -859,7 +849,7 @@ ${dir === "rtl" ? "font-arabic" : ""}`}
             className="text-center mt-16"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: false}}
+            viewport={{ once: false }}
           >
             <Link href="/industries">
               <motion.button
@@ -883,7 +873,7 @@ ${dir === "rtl" ? "font-arabic" : ""}`}
             className={`text-center max-w-4xl mx-auto ${dir === "rtl" ? "font-arabic" : ""}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: false }}
+            viewport={{ once: false }}
           >
             {/* Section Heading */}
             <h2

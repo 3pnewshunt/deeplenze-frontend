@@ -35,17 +35,16 @@ export default function Header() {
   };
 
   return (
-   <header
-  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-    isScrolled
-      ? 'py-3 bg-[#0f1f2a] shadow-sm'
-      : isMobileMenuOpen
-      ? 'py-3 bg-black/50 backdrop-blur-md'
-      : isLightPage
-      ? 'py-3 bg-white shadow-sm border-b border-slate-100'
-      : 'py-3 bg-transparent'
-  }`}
->
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+        ? 'py-3 bg-[#0f1f2a] shadow-sm'
+        : isMobileMenuOpen
+          ? 'py-3 bg-black/50 backdrop-blur-md'
+          : isLightPage
+            ? 'py-3 bg-white shadow-sm border-b border-slate-100'
+            : 'py-3 bg-transparent'
+        }`}
+    >
       <div className="container mx-auto px-2 py-2">
         <nav className="flex items-center justify-between">
 
@@ -69,22 +68,20 @@ export default function Header() {
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href}>
                 <motion.span
-                  className={`relative text-sm font-medium transition-colors cursor-pointer ${
-                    location === link.href
-                      ? isScrolled || !isLightPage ? 'text-white' : 'text-slate-900'
-                      : isScrolled || !isLightPage
+                  className={`relative text-sm font-medium transition-colors cursor-pointer ${location === link.href
+                    ? isScrolled || !isLightPage ? 'text-white' : 'text-slate-900'
+                    : isScrolled || !isLightPage
                       ? 'text-white hover:text-[#32a7b5]'
                       : 'text-slate-700 hover:text-[#32a7b5]'
-                  } ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}
+                    } ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}
                   whileHover={{ y: -2 }}
                   transition={{ type: 'spring', stiffness: 400 }}
                 >
                   {link.label}
                   {location === link.href && (
                     <motion.div
-                      className={`absolute -bottom-1 left-1 right-1 h-0.5 ${
-                        isScrolled || !isLightPage ? 'bg-white' : 'bg-[#32a7b5]'
-                      }`}
+                      className={`absolute -bottom-1 left-1 right-1 h-0.5 ${isScrolled || !isLightPage ? 'bg-white' : 'bg-[#32a7b5]'
+                        }`}
                       layoutId="activeNav"
                     />
                   )}
@@ -97,9 +94,8 @@ export default function Header() {
           <div className="hidden lg:flex items-center gap-4">
             <button
               onClick={toggleLanguage}
-              className={`flex items-center gap-2 px-3 py-2 ${
-                isScrolled || !isLightPage ? 'text-white' : 'text-slate-700'
-              }`}
+              className={`flex items-center gap-2 px-3 py-2 ${isScrolled || !isLightPage ? 'text-white' : 'text-slate-700'
+                }`}
             >
               <Globe className="w-4 h-4" />
               <span className={`text-sm font-medium ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
@@ -109,9 +105,8 @@ export default function Header() {
 
             <Link href="/contact">
               <button
-                className={`px-5 py-2.5 bg-transparent font-semibold text-sm rounded-lg border border-[#32a7b5] ${
-                  isScrolled || !isLightPage ? 'text-white' : 'text-slate-700'
-                }`}
+                className={`px-5 py-2.5 bg-transparent font-semibold text-sm rounded-lg border border-[#32a7b5] ${isScrolled || !isLightPage ? 'text-white' : 'text-slate-700'
+                  }`}
               >
                 <span className={dir === 'rtl' ? 'font-arabic' : 'font-body'}>
                   {t('nav.contact')}
@@ -124,9 +119,8 @@ export default function Header() {
           <div className="flex lg:hidden items-center gap-2 pl-10">
             <motion.button
               onClick={toggleLanguage}
-              className={`p-2 rounded-lg border ${
-                isScrolled || !isLightPage ? 'border-white text-white' : 'border-slate-400 text-slate-700'
-              }`}
+              className={`p-2 rounded-lg border ${isScrolled || !isLightPage ? 'border-white text-white' : 'border-slate-400 text-slate-700'
+                }`}
               whileTap={{ scale: 0.95 }}
             >
               <Globe className="w-5 h-5" />
@@ -145,6 +139,7 @@ export default function Header() {
         </nav>
       </div>
 
+      {/* Mobile Menu */}
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -165,17 +160,33 @@ export default function Header() {
                   <Link href={link.href}>
                     <span
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`block py-3 px-4 rounded-lg transition-colors cursor-pointer ${
-                        location === link.href
-                          ? 'bg-primary/10 text-primary'
-                          : 'text-white hover:bg-gray-50 hover:text-slate-800'
-                      } ${dir === 'rtl' ? 'font-arabic text-right' : 'font-body'}`}
+                      className={`block py-3 px-4 rounded-lg transition-colors cursor-pointer ${location === link.href
+                        ? 'bg-primary/10 text-primary'
+                        : 'text-white hover:bg-gray-50 hover:text-slate-800'
+                        } ${dir === 'rtl' ? 'font-arabic text-right' : 'font-body'}`}
                     >
                       {link.label}
                     </span>
                   </Link>
                 </motion.div>
               ))}
+
+              {/* ← Contact Us button add kiya */}
+              <motion.div
+                initial={{ opacity: 0, x: dir === 'rtl' ? 20 : -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navLinks.length * 0.05 }}
+              >
+                <Link href="/contact">
+                  <span
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`block py-3 px-4 rounded-lg transition-colors cursor-pointer text-white hover:bg-gray-50 hover:text-slate-800 ${dir === 'rtl' ? 'font-arabic text-right' : 'font-body'}`}
+                  >
+                    {t('nav.contact')}
+                  </span>
+                </Link>
+              </motion.div>
+
             </div>
           </motion.div>
         )}
