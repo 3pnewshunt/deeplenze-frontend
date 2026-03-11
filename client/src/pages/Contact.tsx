@@ -28,7 +28,7 @@ export default function Contact() {
     phone: '',
     company: '',
     service: '',
-    product: '',   
+    product: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -41,24 +41,39 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const res = await fetch('http://localhost:3001/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    toast.success(
-      language === 'en'
-        ? 'Message sent successfully! We\'ll get back to you soon.'
-        : 'تم إرسال الرسالة بنجاح! سنتواصل معك قريباً.'
-    );
+      if (!res.ok) throw new Error('Failed');
 
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      service: '',
-      product: '',   
-      message: '',
-    });
-    setIsSubmitting(false);
+      toast.success(
+        language === 'en'
+          ? "Message sent successfully!"
+          : 'تم إرسال الرسالة بنجاح! سنتواصل معك قريباً.'
+      );
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        service: '',
+        product: '',
+        message: '',
+      });
+    } catch {
+      toast.error(
+        language === 'en'
+          ? 'Something went wrong. Please try again.'
+          : 'حدث خطأ ما. يرجى المحاولة مرة أخرى.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const services = language === 'en'
@@ -66,14 +81,14 @@ export default function Contact() {
       { value: 'ai', label: 'Artificial Intelligence' },
       { value: 'cyber', label: 'Cyber Security' },
       { value: 'digital', label: 'Digital Transformation' },
-      { value: 'smart', label: 'Smart Cities' },
+      { value: 'AWS', label: 'AWS Cloud Management' },
       { value: 'other', label: 'Other' },
     ]
     : [
       { value: 'ai', label: 'الذكاء الاصطناعي' },
       { value: 'cyber', label: 'الأمن السيبراني' },
       { value: 'digital', label: 'التحول الرقمي' },
-      { value: 'smart', label: 'المدن الذكية' },
+      { value: 'AWS', label: 'إدارة سحابة AWS' },
       { value: 'other', label: 'أخرى' },
     ];
 
@@ -83,11 +98,11 @@ export default function Contact() {
       title: language === 'en' ? '15 & 16 Riyadh Olaya Center, Riyadh, Saudi Arabia' : '15 و 16 مركز الرياض العليا، الرياض، المملكة العربية السعودية',
       details: [],
     },
-    {
-      icon: MapPin,
-      title: language === 'en' ? '305 Al Worood Commercial Center, Jeddah, Saudi Arabia' : '305 مركز الورود التجاري، جدة، المملكة العربية السعودية',
-      details: [],
-    },
+    // {
+    //   icon: MapPin,
+    //   title: language === 'en' ? '305 Al Worood Commercial Center, Jeddah, Saudi Arabia' : '305 مركز الورود التجاري، جدة، المملكة العربية السعودية',
+    //   details: [],
+    // },
     {
       icon: MapPin,
       title: language === 'en' ? '305 & 306 Building B, B-SQUARE Nasr City, Cairo, Egypt' : '305 و 306 مبنى B، بي سكوير مدينة نصر، القاهرة، مصر',
@@ -303,7 +318,7 @@ export default function Contact() {
                       onChange={handleChange}
                       className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg bg-gray-50 text-slate-500 focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm sm:text-base ${dir === 'rtl' ? 'font-arabic text-right' : 'font-body'}`}
                     >
-                      <option value="">{language === 'en' ? 'Select a service' : 'اختر خدمة'}</option>
+                      <option disabled hidden value="">{language === 'en' ? 'Select a service' : 'اختر خدمة'}</option>
                       {services.map((service) => (
                         <option key={service.value} value={service.value}>
                           {service.label}
@@ -323,11 +338,11 @@ export default function Contact() {
                       onChange={handleChange}
                       className={`w-full px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg bg-gray-50 text-slate-500 focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-sm sm:text-base ${dir === 'rtl' ? 'font-arabic text-right' : 'font-body'}`}
                     >
-                      <option value="">{language === 'en' ? 'Select a product' : 'اختر منتجاً'}</option>
+                      <option disabled hidden value="">{language === 'en' ? 'Select a product' : 'اختر منتجاً'}</option>
                       <option value="nalyst">{language === 'en' ? 'Nalyst' : 'نالست'}</option>
                       <option value="newshunt">{language === 'en' ? 'Newshunt' : 'نيوزهانت'}</option>
-                      <option value="4kast">{language === 'en' ? '4Kast' : '4كاست'}</option>
-                      <option value="hr360">Hr360</option>
+                      <option value="FOREQAST">{language === 'en' ? 'FOREQAST' : 'توقع'}</option>
+                      <option value="QANOON HR">{language === 'en' ? 'QANOON HR' : 'قانون للموارد البشرية'}</option>
                       <option value="hoorapp">{language === 'en' ? 'HoorApp' : 'هور آب'}</option>
                       <option value="diraa">{language === 'en' ? 'Diraa' : 'دراع'}</option>
                     </select>
