@@ -3,12 +3,13 @@
  * Colors: Midnight Blue, Digital Gold, Electric Teal
  */
 
+import HeroImage from "@/assets/images/herosection.png";
 import { useLanguage } from '@/contexts/LanguageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
-import { 
+import {
   ArrowRight,
   ArrowLeft,
   Landmark,
@@ -21,8 +22,6 @@ import {
   Heart,
   Store
 } from 'lucide-react';
-
-const SMART_IMG = "https://files.manuscdn.com/user_upload_by_module/session_file/310419663030867079/zxhLFuUlDPKEooqo.jpg";
 
 export default function Industries() {
   const { t, dir, language } = useLanguage();
@@ -111,7 +110,7 @@ export default function Industries() {
       id: 'health',
       icon: Heart,
       title: language === 'en' ? 'Healthcare' : 'الرعاية الصحية',
-      description: language === 'en' 
+      description: language === 'en'
         ? 'Digital health solutions for hospitals, clinics, and healthcare providers.'
         : 'حلول الصحة الرقمية للمستشفيات والعيادات ومقدمي الرعاية الصحية.',
       color: '#00D4AA',
@@ -126,7 +125,7 @@ export default function Industries() {
       id: 'retail',
       icon: Store,
       title: language === 'en' ? 'Retail' : 'التجزئة',
-      description: language === 'en' 
+      description: language === 'en'
         ? 'Omnichannel retail solutions for modern shopping experiences.'
         : 'حلول التجزئة متعددة القنوات لتجارب تسوق حديثة.',
       color: '#C9A227',
@@ -140,141 +139,142 @@ export default function Industries() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0A1628]">
+    <div className="min-h-screen bg-background font-body">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
+        {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
-            src={SMART_IMG} 
-            alt="Industries Background" 
-            className="w-full h-full object-cover opacity-20"
+          <img
+            src={HeroImage}
+            alt="Industries Background"
+            className="w-full h-full object-cover "
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628] via-[#0A1628]/90 to-[#0A1628]" />
+              {/* Blue semi-transparent dark overlay */}
+    <div className="absolute inset-0 bg-blue-900/40"></div>
+          {/* Very light dark overlay */}
+          <div className="absolute inset-0 " />
         </div>
-        
-        <div className="container relative z-10">
+
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className={`max-w-3xl mx-auto text-center ${dir === 'rtl' ? 'font-arabic' : ''}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <span className={`inline-block px-4 py-2 rounded-full bg-[#00D4AA]/10 border border-[#00D4AA]/30 text-[#00D4AA] text-sm font-medium mb-6 ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
+            {/* <span className={`inline-block px-4 py-2 rounded-full bg-[#32a7b5]/10 border border-[#32a7b5]/30 text-[#32a7b5] text-sm font-bold mb-6 tracking-wide uppercase ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
               {language === 'en' ? 'Sectors We Serve' : 'القطاعات التي نخدمها'}
-            </span>
+            </span> */}
             <h1 className={`text-4xl md:text-6xl font-bold text-white mb-6 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
               {t('industries.title')}
             </h1>
-            <p className={`text-xl text-gray-300 leading-relaxed ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
+            <p className={`text-xl text-white leading-relaxed ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
               {t('industries.subtitle')}
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Industries Grid */}
-      <section className="py-16">
-        <div className="container">
-          <div className="space-y-8">
-            {industries.map((industry, index) => (
-              <motion.div
-                key={industry.id}
-                className={`p-8 rounded-2xl ${index % 2 === 0 ? 'bg-[#050d18]' : 'glass'}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <div className={`grid grid-cols-1 lg:grid-cols-3 gap-8 ${dir === 'rtl' ? 'text-right' : ''}`}>
-                  {/* Header */}
-                  <div className="lg:col-span-1">
-                    <div className={`flex items-center gap-4 mb-4 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
-                      <div 
-                        className="w-14 h-14 rounded-xl flex items-center justify-center"
-                        style={{ backgroundColor: `${industry.color}20`, border: `1px solid ${industry.color}40` }}
-                      >
-                        <industry.icon className="w-7 h-7" style={{ color: industry.color }} />
-                      </div>
-                      <h3 className={`text-2xl font-bold text-white ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
-                        {industry.title}
-                      </h3>
-                    </div>
-                    <p className={`text-gray-300 leading-relaxed ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-                      {industry.description}
-                    </p>
-                  </div>
+{/* Industries Grid */}
+<section className="py-20 bg-white relative overflow-hidden">
+  {/* Subtle background pattern */}
+  <div className="absolute inset-0 opacity-[0.03]"
+    style={{
+      backgroundImage: `radial-gradient(circle at 1px 1px, #32a7b5 1px, transparent 0)`,
+      backgroundSize: '32px 32px'
+    }}
+  />
 
-                  {/* Solutions */}
-                  <div className="lg:col-span-1">
-                    <h4 className={`text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4 ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-                      {language === 'en' ? 'Solutions' : 'الحلول'}
-                    </h4>
-                    <div className="space-y-2">
-                      {industry.solutions.map((solution, i) => (
-                        <div 
-                          key={i}
-                          className={`flex items-center gap-2 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}
-                        >
-                          <CheckCircle2 className="w-4 h-4 flex-shrink-0" style={{ color: industry.color }} />
-                          <span className={`text-gray-300 text-sm ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-                            {solution}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {industries.map((industry, index) => (
+        <motion.div
+          key={industry.id}
+          className={`group relative rounded-2xl overflow-hidden bg-white border border-[#32a7b5]/15 hover:border-[#32a7b5]/50 transition-all duration-500 ${dir === 'rtl' ? 'text-right' : ''}`}
+          style={{ boxShadow: '0 4px 24px rgba(50,167,181,0.08)' }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ delay: index * 0.1, duration: 0.5 }}
+          whileHover={{ y: -4 }}
+        >
+          {/* Glow */}
+          <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#32a7b5]/8 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                  {/* Case Study */}
-                  <div className="lg:col-span-1">
-                    <h4 className={`text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4 ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-                      {language === 'en' ? 'Success Story' : 'قصة نجاح'}
-                    </h4>
-                    <p className={`text-gray-300 text-sm leading-relaxed mb-4 ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-                      {industry.caseStudy}
-                    </p>
-                    <Link href="/contact">
-                      <motion.button
-                        className={`inline-flex items-center gap-2 text-sm font-medium ${dir === 'rtl' ? 'flex-row-reverse font-arabic' : 'font-body'}`}
-                        style={{ color: industry.color }}
-                        whileHover={{ x: dir === 'rtl' ? -5 : 5 }}
-                      >
-                        {language === 'en' ? 'Learn More' : 'اعرف المزيد'}
-                        <ArrowIcon className="w-4 h-4" />
-                      </motion.button>
-                    </Link>
-                  </div>
+          <div className="relative z-10 p-6 sm:p-8">
+
+            {/* Header: Icon + Title */}
+            <div className={`flex items-center gap-4 mb-4 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}>
+              <div className="w-14 h-14 flex-shrink-0 rounded-2xl flex items-center justify-center bg-[#32a7b5]/10 border-2 border-[#32a7b5]/25 group-hover:bg-[#32a7b5]/15 transition-colors duration-300">
+                <industry.icon className="w-7 h-7 text-[#32a7b5]" />
+              </div>
+              <h3 className={`text-xl sm:text-2xl font-bold text-gray-900 leading-tight ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
+                {industry.title}
+              </h3>
+            </div>
+
+            {/* Description */}
+            <p className={`text-gray-600 text-sm leading-relaxed mb-5 ${dir === 'rtl' ? 'font-arabic text-right' : 'font-body'}`}>
+              {industry.description}
+            </p>
+
+            {/* Divider */}
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-[#32a7b5]/20 to-transparent mb-5" />
+
+            {/* Solutions Label */}
+            <h4 className={`text-xs font-bold text-[#32a7b5] uppercase tracking-widest mb-3 ${dir === 'rtl' ? 'font-arabic text-right' : 'font-body'}`}>
+              {language === 'en' ? 'Solutions' : 'الحلول'}
+            </h4>
+
+            {/* Solutions Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {industry.solutions.map((solution, i) => (
+                <div
+                  key={i}
+                  className={`flex items-center gap-2 px-3 py-2 rounded-lg bg-[#32a7b5]/4 border border-[#32a7b5]/10 group-hover:border-[#32a7b5]/25 transition-colors duration-300 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}
+                >
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-[#32a7b5]" />
+                  <span className={`text-gray-700 text-xs font-medium leading-tight ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
+                    {solution}
+                  </span>
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
+
           </div>
-        </div>
-      </section>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#00D4AA]/10 via-transparent to-[#C9A227]/10" />
-        
-        <div className="container relative">
+      <section className="py-24 relative overflow-hidden bg-gray-50">
+        <div className="container mx-auto px-4 relative">
           <motion.div
             className={`text-center max-w-3xl mx-auto ${dir === 'rtl' ? 'font-arabic' : ''}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+           viewport={{ once: false }}
           >
-            <h2 className={`text-3xl md:text-4xl font-bold text-white mb-6 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
+            <h2 className={`text-3xl md:text-4xl font-bold text-[#314158] mb-6 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
               {language === 'en' ? 'Don\'t See Your Industry?' : 'لا ترى قطاعك؟'}
             </h2>
-            <p className={`text-gray-300 text-lg mb-10 ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-              {language === 'en' 
+            <p className={`text-gray-700 text-lg mb-10 ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
+              {language === 'en'
                 ? 'Our expertise extends across many sectors. Contact us to discuss how we can help transform your organization.'
                 : 'تمتد خبرتنا عبر العديد من القطاعات. تواصل معنا لمناقشة كيف يمكننا المساعدة في تحويل مؤسستك.'
               }
             </p>
             <Link href="/contact">
               <motion.button
-                className={`inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-[#00D4AA] to-[#00D4AA]/80 text-[#0A1628] font-bold text-lg rounded-xl hover:shadow-xl hover:shadow-[#00D4AA]/25 transition-all ${dir === 'rtl' ? 'flex-row-reverse font-arabic' : 'font-body'}`}
+                className={`inline-flex items-center gap-3 px-10 py-5 bg-[#32a7b5] text-white font-bold text-lg rounded-xl shadow-lg  hover:shadow-xl transition-all ${dir === 'rtl' ? 'flex-row-reverse font-arabic' : 'font-body'}`}
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
               >

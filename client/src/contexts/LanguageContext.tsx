@@ -21,7 +21,7 @@ const translations: Translations = {
   // Hero Section
   'hero.title': { en: 'Transforming Tomorrow', ar: 'نصنع المستقبل' },
   'hero.subtitle': { en: 'Through Innovation', ar: 'من خلال الابتكار' },
-  'hero.description': { en: 'Leading Saudi Arabia\'s digital transformation with cutting-edge AI, Cybersecurity, and Smart City solutions aligned with Vision 2030.', ar: 'نقود التحول الرقمي في المملكة العربية السعودية من خلال حلول الذكاء الاصطناعي والأمن السيبراني والمدن الذكية المتوافقة مع رؤية 2030.' },
+  'hero.description': { en: 'Leading Saudi Arabia\'s digital transformation with cutting-edge AI, and Cybersecurity aligned with Vision 2030.', ar: 'نقود التحول الرقمي في المملكة العربية السعودية من خلال حلول الذكاء الاصطناعي والأمن السيبراني والمدن الذكية المتوافقة مع رؤية 2030.' },
   'hero.cta.services': { en: 'Explore Services', ar: 'استكشف خدماتنا' },
   'hero.cta.contact': { en: 'Get in Touch', ar: 'تواصل معنا' },
   
@@ -29,12 +29,13 @@ const translations: Translations = {
   'services.title': { en: 'Our Expertise', ar: 'خبراتنا' },
   'services.subtitle': { en: 'Four Pillars of Digital Excellence', ar: 'أربعة ركائز للتميز الرقمي' },
   'services.ai.title': { en: 'Artificial Intelligence', ar: 'الذكاء الاصطناعي' },
-  'services.ai.description': { en: 'Harness the power of machine learning and AI to automate processes, gain insights, and drive innovation across your organization.', ar: 'استفد من قوة التعلم الآلي والذكاء الاصطناعي لأتمتة العمليات واكتساب الرؤى ودفع الابتكار في مؤسستك.' },
+  'services.ai.description': { en: 'Leverage advanced Generative AI, intelligent automation, and seamless AI integration to transform operations, enhance decision-making, and accelerate digital innovation across your enterprise.', ar: 'استفد من الذكاء الاصطناعي التوليدي المتقدم، والأتمتة الذكية، والتكامل السلس للذكاء الاصطناعي لتحويل العمليات، وتعزيز عملية صنع القرار، وتسريع الابتكار الرقمي في جميع أنحاء مؤسستك.' },
   'services.cyber.title': { en: 'Cyber Security', ar: 'الأمن السيبراني' },
   'services.cyber.description': { en: 'Protect your digital assets with comprehensive security solutions, threat detection, and compliance frameworks tailored for the Saudi market.', ar: 'احمِ أصولك الرقمية من خلال حلول أمنية شاملة واكتشاف التهديدات وأطر الامتثال المصممة للسوق السعودي.' },
   'services.digital.title': { en: 'Digital Transformation', ar: 'التحول الرقمي' },
   'services.digital.description': { en: 'Navigate your digital journey with strategic consulting, process optimization, and technology integration aligned with Vision 2030.', ar: 'انتقل في رحلتك الرقمية من خلال الاستشارات الاستراتيجية وتحسين العمليات وتكامل التكنولوجيا المتوافقة مع رؤية 2030.' },
   'services.smart.title': { en: 'Smart Cities', ar: 'المدن الذكية' },
+  'services.aws.title': { en: 'AWS Cloud Management', ar: 'المدن الذكية' },
   'services.smart.description': { en: 'Build intelligent urban infrastructure with IoT solutions, data analytics, and sustainable technologies for the cities of tomorrow.', ar: 'ابنِ بنية تحتية حضرية ذكية مع حلول إنترنت الأشياء وتحليلات البيانات والتقنيات المستدامة لمدن الغد.' },
   'services.learnMore': { en: 'Learn More', ar: 'اعرف المزيد' },
   
@@ -42,17 +43,17 @@ const translations: Translations = {
   'products.title': { en: 'Our Products', ar: 'منتجاتنا' },
   'products.subtitle': { en: 'Innovative Solutions for Modern Challenges', ar: 'حلول مبتكرة للتحديات الحديثة' },
   'products.nalyst.name': { en: 'Nalyst', ar: 'ناليست' },
-  'products.nalyst.description': { en: 'Advanced analytics platform powered by AI for data-driven decision making.', ar: 'منصة تحليلات متقدمة مدعومة بالذكاء الاصطناعي لاتخاذ القرارات المبنية على البيانات.' },
+  'products.nalyst.description': { en: 'Advanced news intelligence platform powered by AI for analyzing global news, identifying trends, and extracting insights from millions of articles in real time', ar: 'منصة تحليلات متقدمة مدعومة بالذكاء الاصطناعي لاتخاذ القرارات المبنية على البيانات.' },
   'products.newshunt.name': { en: 'NewsHunt', ar: 'نيوز هانت' },
-  'products.newshunt.description': { en: 'Intelligent news aggregation and media monitoring solution.', ar: 'حل ذكي لتجميع الأخبار ومراقبة وسائل الإعلام.' },
-  'products.asaad.name': { en: 'Asaad', ar: 'أسعد' },
-  'products.asaad.description': { en: 'Comprehensive cybersecurity suite for enterprise protection.', ar: 'مجموعة شاملة للأمن السيبراني لحماية المؤسسات.' },
-  'products.khella.name': { en: 'Khella', ar: 'خلة' },
-  'products.khella.description': { en: 'Smart communication and collaboration platform.', ar: 'منصة ذكية للتواصل والتعاون.' },
-  'products.4kast.name': { en: '4kast', ar: 'فوركاست' },
-  'products.4kast.description': { en: 'Predictive analytics and forecasting engine.', ar: 'محرك التحليلات التنبؤية والتوقعات.' },
-  'products.hr360.name': { en: 'HR360', ar: 'إتش آر 360' },
-  'products.hr360.description': { en: 'Complete human resources management system.', ar: 'نظام إدارة الموارد البشرية المتكامل.' },
+  'products.newshunt.description': { en: 'A smart news and opinion aggregation platform available on web and mobile that collects and organizes news from thousands of sources worldwide across multiple languages with powerful personalization options', ar: 'حل ذكي لتجميع الأخبار ومراقبة وسائل الإعلام.' },
+  'products.asaad.name': { en: 'Diraa', ar: 'دراع' },
+  'products.asaad.description': { en: 'Advanced intrusion detection and prevention platform that uses AI to automatically generate security rules, detect threats in real time, and protect enterprise infrastructure from evolving cyber attacks.', ar: 'مجموعة شاملة للأمن السيبراني لحماية المؤسسات.' },
+  'products.khella.name': { en: 'HoorApp', ar: 'هور' },
+  'products.khella.description': { en: 'A beauty-focused e-commerce aggregation platform that helps users discover, compare, and purchase beauty products from multiple stores while finding the best prices and nearest available shops.', ar: 'منصة ذكية للتواصل والتعاون.' },
+  'products.4kast.name': { en: 'ForeQast', ar: 'فوركاست' },
+  'products.4kast.description': { en: 'AI-powered forecasting platform that helps retailers, e-commerce businesses, and supermarkets predict sales trends and optimize inventory to improve efficiency and reduce stock shortages.', ar: 'محرك التحليلات التنبؤية والتوقعات.' },
+  'products.hr360.name': { en: 'QanoonHR', ar: 'إتش آر 360' },
+  'products.hr360.description': { en: 'Comprehensive human resource management platform designed in compliance with Saudi labor law, enabling organizations to manage the complete employee lifecycle efficiently.', ar: 'نظام إدارة الموارد البشرية المتكامل.' },
   
   // Industries Section
   'industries.title': { en: 'Industries We Serve', ar: 'القطاعات التي نخدمها' },
@@ -71,9 +72,9 @@ const translations: Translations = {
   'industries.private.description': { en: 'Enterprise solutions for digital growth and operational excellence.', ar: 'حلول المؤسسات للنمو الرقمي والتميز التشغيلي.' },
   
   // About Section
-  'about.title': { en: 'About TechVision', ar: 'عن تك فيجن' },
+  'about.title': { en: 'About Deeplenze', ar: 'عن تك فيجن' },
   'about.subtitle': { en: 'Pioneering Digital Excellence in Saudi Arabia', ar: 'ريادة التميز الرقمي في المملكة العربية السعودية' },
-  'about.description': { en: 'TechVision is a leading technology consulting firm headquartered in Saudi Arabia, dedicated to driving digital transformation across the Kingdom. Our team of experts combines deep technical knowledge with regional insights to deliver innovative solutions that align with Vision 2030.', ar: 'تك فيجن هي شركة استشارات تقنية رائدة مقرها في المملكة العربية السعودية، مكرسة لدفع التحول الرقمي في جميع أنحاء المملكة. يجمع فريقنا من الخبراء بين المعرفة التقنية العميقة والرؤى الإقليمية لتقديم حلول مبتكرة تتوافق مع رؤية 2030.' },
+  'about.description': { en: 'Deeplenze is a leading technology consulting firm headquartered in Saudi Arabia, dedicated to driving digital transformation across the Kingdom. Our team of experts combines deep technical knowledge with regional insights to deliver innovative solutions that align with Vision 2030.', ar: 'تك فيجن هي شركة استشارات تقنية رائدة مقرها في المملكة العربية السعودية، مكرسة لدفع التحول الرقمي في جميع أنحاء المملكة. يجمع فريقنا من الخبراء بين المعرفة التقنية العميقة والرؤى الإقليمية لتقديم حلول مبتكرة تتوافق مع رؤية 2030.' },
   'about.mission.title': { en: 'Our Mission', ar: 'مهمتنا' },
   'about.mission.description': { en: 'To empower organizations with cutting-edge technology solutions that drive growth, enhance security, and create sustainable digital ecosystems.', ar: 'تمكين المؤسسات من خلال حلول تقنية متطورة تدفع النمو وتعزز الأمان وتخلق أنظمة رقمية مستدامة.' },
   'about.vision.title': { en: 'Our Vision', ar: 'رؤيتنا' },
@@ -95,15 +96,15 @@ const translations: Translations = {
   'contact.form.message': { en: 'Your Message', ar: 'رسالتك' },
   'contact.form.submit': { en: 'Send Message', ar: 'إرسال الرسالة' },
   'contact.info.address': { en: 'Riyadh, Saudi Arabia', ar: 'الرياض، المملكة العربية السعودية' },
-  'contact.info.email': { en: 'info@techvision.sa', ar: 'info@techvision.sa' },
-  'contact.info.phone': { en: '+966 11 XXX XXXX', ar: '+966 11 XXX XXXX' },
+  'contact.info.email': { en: 'support@deeplenze.com.', ar: 'support@deeplenze.com.' },
+  'contact.info.phone': { en: '+966 11 245 8536', ar: '+966 11 245 8536' },
   
   // Footer
-  'footer.description': { en: 'Leading Saudi Arabia\'s digital transformation journey with innovative technology solutions.', ar: 'نقود رحلة التحول الرقمي في المملكة العربية السعودية من خلال حلول تقنية مبتكرة.' },
+  'footer.description': { en: 'Digital transformation journey with innovative technology solutions.', ar: 'نقود رحلة التحول الرقمي في المملكة العربية السعودية من خلال حلول تقنية مبتكرة.' },
   'footer.quicklinks': { en: 'Quick Links', ar: 'روابط سريعة' },
   'footer.services': { en: 'Our Services', ar: 'خدماتنا' },
   'footer.contact': { en: 'Contact Info', ar: 'معلومات الاتصال' },
-  'footer.copyright': { en: '© 2024 TechVision. All rights reserved.', ar: '© 2024 تك فيجن. جميع الحقوق محفوظة.' },
+  'footer.copyright': { en: '© 2026 Deeplenze. All rights reserved.', ar: '© 2026 تك فيجن. جميع الحقوق محفوظة.' },
   
   // Common
   'common.readMore': { en: 'Read More', ar: 'اقرأ المزيد' },
