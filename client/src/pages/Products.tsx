@@ -64,12 +64,12 @@ export default function Products() {
       description: t('products.nalyst.description'),
       logo: nalystLogo,
       color: '#00D4AA',
-      tagline: language === 'en' ? 'AI-Powered Analytics' : 'تحليلات مدعومة بالذكاء الاصطناعي',
-      url: "https://newshunt-sensika.vercel.app/en",
+      tagline: language === 'en' ? 'AI Powered Analytics' : 'تحليلات مدعومة بالذكاء الاصطناعي',
+      url: "https://nalyst.ai",
       platforms: {
-        android: "https://play.google.com/",
-        ios: "https://apps.apple.com/",
-        web: "https://newshunt-sensika.vercel.app/en"
+        // android: "https://play.google.com/",
+        // ios: "https://apps.apple.com/",
+        web: "https://nalyst.ai"
       },
       industries: language === 'en'
         ? [
@@ -83,7 +83,7 @@ export default function Products() {
           { label: 'الإعلام', Icon: Tv2, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
         ],
       features: language === 'en'
-        ? ['Real-time global news monitoring', 'Custom analytics dashboards', 'Entity extraction & trend detection', 'Multi-language news analysis']
+        ? ['Real time global news monitoring', 'Custom analytics dashboards', 'Entity extraction & trend detection', 'Multi language news analysis']
         : ['معالجة البيانات في الوقت الفعلي', 'منشئ لوحات المعلومات المخصصة', 'رؤى تنبؤية', 'تكامل متعدد المصادر'],
     },
     {
@@ -93,11 +93,11 @@ export default function Products() {
       logo: newsHuntLogo,
       color: '#C9A227',
       tagline: language === 'en' ? 'GLOBAL NEWS AGGREGATION' : 'الذكاء الإعلامي',
-      url: '#',
+      url: 'https://newshunt.io',
       platforms: {
         android: "https://play.google.com/",
         ios: "https://apps.apple.com/",
-        web: "#"
+        web: "https://newshunt.io"
       },
       industries: language === 'en'
         ? [
@@ -111,7 +111,7 @@ export default function Products() {
           { label: 'الباحثون', Icon: Search, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
         ],
       features: language === 'en'
-        ? ['Global news & opinion aggregation', 'Multi-language news coverage', 'Personalized feeds & customization', 'Smart alerts and trending topics']
+        ? ['Global news & opinion aggregation', 'Multi language news coverage', 'Personalized feeds & customization', 'Smart alerts and trending topics']
         : ['تجميع الأخبار بالذكاء الاصطناعي', 'تحليل المشاعر', 'اكتشاف الاتجاهات', 'تنبيهات وتقارير مخصصة'],
     },
     {
@@ -120,12 +120,12 @@ export default function Products() {
       description: t('products.asaad.description'),
       logo: assadLogo,
       color: '#00D4AA',
-      tagline: language === 'en' ? 'AI-POWERED INTRUSION DETECTION' : 'أمان المؤسسات',
-      url: '#',
+      tagline: language === 'en' ? 'AI POWERED INTRUSION DETECTION' : 'أمان المؤسسات',
+      url: 'https://diraa.io',
       platforms: {
-        android: "https://play.google.com/",
-        ios: "https://apps.apple.com/",
-        web: "#"
+        // android: "https://play.google.com/",
+        // ios: "https://apps.apple.com/",
+        web: "https://diraa.io"
       },
       industries: language === 'en'
         ? [
@@ -139,7 +139,7 @@ export default function Products() {
           { label: 'الدفاع', Icon: Shield, color: '#ef4444', bg: '#fef2f2', border: '#fecaca' },
         ],
       features: language === 'en'
-        ? ['AI-generated detection rules', 'Real-time intrusion detection & prevention', 'Advanced threat monitoring', 'Security analytics & alerts']
+        ? ['AI generated detection rules', 'Real time intrusion detection & prevention', 'Advanced threat monitoring', 'Security analytics & alerts']
         : ['اكتشاف التهديدات والاستجابة', 'إدارة الثغرات', 'مراقبة الامتثال', 'تحليلات الأمان'],
     },
     {
@@ -149,11 +149,11 @@ export default function Products() {
       logo: khellaLogo,
       color: '#C9A227',
       tagline: language === 'en' ? 'SMART BEAUTY SHOPPING' : 'التعاون الذكي',
-      url: '#',
+      url: 'https://hoor.app',
       platforms: {
         android: "https://play.google.com/",
         ios: "https://apps.apple.com/",
-        web: "#"
+        web: "https://hoor.app"
       },
       industries: language === 'en'
         ? [
@@ -167,7 +167,7 @@ export default function Products() {
           { label: 'التجارة الإلكترونية', Icon: ShoppingCart, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
         ],
       features: language === 'en'
-        ? ['Beauty product price comparison', 'Multi-store product aggregation', 'Find nearest available shops', 'Smart product recommendations']
+        ? ['Beauty product price comparison', 'Multi store product aggregation', 'Find nearest available shops', 'Smart product recommendations']
         : ['المراسلة الآمنة', 'مؤتمرات الفيديو', 'مشاركة الملفات والتعاون', 'مساعد الاجتماعات بالذكاء الاصطناعي'],
     },
     {
@@ -177,11 +177,11 @@ export default function Products() {
       logo: kastLogo,
       color: '#00D4AA',
       tagline: language === 'en' ? 'PREDICTIVE RETAIL INTELLIGENCE' : 'الذكاء التنبؤي',
-      url: '#',
+      url: 'https://foreqast.com',
       platforms: {
-        android: "https://play.google.com/",
-        ios: "https://apps.apple.com/",
-        web: "#"
+        // android: "https://play.google.com/",
+        // ios: "https://apps.apple.com/",
+        web: "https://foreqast.com"
       },
       industries: language === 'en'
         ? [
@@ -195,7 +195,7 @@ export default function Products() {
           { label: 'اللوجستيات', Icon: Truck, color: '#f97316', bg: '#fff7ed', border: '#fed7aa' },
         ],
       features: language === 'en'
-        ? ['Sales forecasting', 'Inventory demand prediction', 'Retail and e-commerce analytics', 'Smart inventory planning']
+        ? ['Sales forecasting', 'Inventory demand prediction', 'Retail and e commerce analytics', 'Smart inventory planning']
         : ['التنبؤ بالطلب', 'التنبؤ بالمخاطر', 'تحليل السوق', 'تخطيط السيناريوهات'],
     },
     {
@@ -204,12 +204,12 @@ export default function Products() {
       description: t('products.hr360.description'),
       logo: hr360Logo,
       color: '#C9A227',
-      tagline: language === 'en' ? 'SAUDI-COMPLIANT HR MANAGEMENT' : 'إدارة الموارد البشرية',
-      url: '#',
+      tagline: language === 'en' ? 'SAUDI COMPLIANT HR MANAGEMENT' : 'إدارة الموارد البشرية',
+      url: 'https://qanunhr.com',
       platforms: {
-        android: "https://play.google.com/",
-        ios: "https://apps.apple.com/",
-        web: "#"
+        // android: "https://play.google.com/",
+        // ios: "https://apps.apple.com/",
+        web: "https://qanunhr.com"
       },
       industries: language === 'en'
         ? [
@@ -388,6 +388,8 @@ export default function Products() {
                         <ArrowIcon className="w-3.5 h-3.5 flex-shrink-0" />
                       </motion.button>
                     </Link>
+
+          
                     <a href={product.url} className="w-full">
                       <motion.button
                         className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white text-[#32a7b5] font-bold text-xs sm:text-sm rounded-xl border-2 border-[#32a7b5] hover:bg-[#32a7b5] hover:text-white transition-all duration-300 ${dir === 'rtl' ? 'flex-row-reverse font-arabic' : 'font-body'}`}

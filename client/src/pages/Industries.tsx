@@ -35,7 +35,7 @@ export default function Industries() {
       description: t('industries.government.description'),
       color: '#00D4AA',
       solutions: language === 'en'
-        ? ['E-Government Platforms', 'Citizen Services Portal', 'Document Management', 'Inter-agency Integration', 'Public Sector Analytics']
+        ? ['E Government Platforms', 'Citizen Services Portal', 'Document Management', 'Inter-agency Integration', 'Public Sector Analytics']
         : ['منصات الحكومة الإلكترونية', 'بوابة خدمات المواطنين', 'إدارة الوثائق', 'التكامل بين الجهات', 'تحليلات القطاع العام'],
       caseStudy: language === 'en'
         ? 'Implemented a unified digital platform serving 2M+ citizens with 40% improvement in service delivery time.'
@@ -51,7 +51,7 @@ export default function Industries() {
         ? ['Research Analytics Platform', 'Knowledge Management', 'Publication Systems', 'Data Visualization', 'Collaboration Tools']
         : ['منصة تحليلات البحث', 'إدارة المعرفة', 'أنظمة النشر', 'تصور البيانات', 'أدوات التعاون'],
       caseStudy: language === 'en'
-        ? 'Deployed AI-powered research platform reducing analysis time by 60% for policy research initiatives.'
+        ? 'Deployed AI powered research platform reducing analysis time by 60% for policy research initiatives.'
         : 'تم نشر منصة بحثية مدعومة بالذكاء الاصطناعي مما قلل وقت التحليل بنسبة 60% لمبادرات البحث السياسي.',
     },
     {
@@ -64,7 +64,7 @@ export default function Industries() {
         ? ['Secure Payment Systems', 'Inventory Management', 'Customer Analytics', 'Fraud Detection', 'Personalization Engine']
         : ['أنظمة الدفع الآمنة', 'إدارة المخزون', 'تحليلات العملاء', 'اكتشاف الاحتيال', 'محرك التخصيص'],
       caseStudy: language === 'en'
-        ? 'Built scalable e-commerce infrastructure handling 100K+ daily transactions with 99.9% uptime.'
+        ? 'Built scalable e commerce infrastructure handling 100K+ daily transactions with 99.9% uptime.'
         : 'تم بناء بنية تحتية للتجارة الإلكترونية قابلة للتطوير تتعامل مع أكثر من 100 ألف معاملة يومية بوقت تشغيل 99.9%.',
     },
     {

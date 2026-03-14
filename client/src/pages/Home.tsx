@@ -48,7 +48,7 @@ import DIGITAL_IMG from "@/assets/images/DigitalTransformation.png";
 import AWS from "@/assets/images/AWSCloudManagement.png";
 const galleryImages = [
   AI_IMG,
-  CYBER_IMG,
+  CYBER_IMG, 
   DIGITAL_IMG,
   AWS,
   AI_IMG,
