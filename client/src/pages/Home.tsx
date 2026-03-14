@@ -3,16 +3,21 @@
  * Colors: Midnight Blue, Digital Gold, Electric Teal
  */
 
-import { Link } from 'wouter';
-import { useLanguage } from '@/contexts/LanguageContext';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { 
-  Brain, 
-  Shield, 
-  Sparkles, 
-  Building2, 
+import { Link } from "wouter";
+import { useRef } from "react";
+
+import { useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+// import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
+import {
+  Brain,
+  Shield,
+  Sparkles,
+  Building2,
   ArrowRight,
   ArrowLeft,
   ChevronRight,
@@ -25,266 +30,509 @@ import {
   Briefcase,
   Cloud,
   Heart,
-  Store
-} from 'lucide-react';
+  Store,
+} from "lucide-react";
 
 // Image URLs
-const HERO_BG = "./src/assets/images/herosection.png";
-const AI_IMG = "https://files.manuscdn.com/user_upload_by_module/session_file/310419663030867079/hYVpeMLXqLiWYyQt.jpg";
-const CYBER_IMG = "https://files.manuscdn.com/user_upload_by_module/session_file/310419663030867079/ttqBQgjepjeNgSMT.jpg";
-const DIGITAL_IMG = "https://files.manuscdn.com/user_upload_by_module/session_file/310419663030867079/xsqFgzTMBLvupfxK.jpg";
-const SMART_IMG = "https://files.manuscdn.com/user_upload_by_module/session_file/310419663030867079/zxhLFuUlDPKEooqo.jpg";
+import HeroImage from "@/assets/images/herosection.png";
+// logs
+import nalystLogo from "@/assets/images/nalyst.png";
+import newsHuntLogo from "@/assets/images/newshunt_logo.png";
+import kastLogo from "@/assets/images/ForeQast.svg";
+import hr360Logo from "@/assets/images/QanoonHr.svg";
+import khellaLogo from "@/assets/images/HoorLogo.svg";
+import assadLogo from "@/assets/images/DiraaLogo.svg";
+import AI_IMG from "@/assets/images/AI.png";
+import CYBER_IMG from "@/assets/images/CyberSecurity.png";
+import DIGITAL_IMG from "@/assets/images/DigitalTransformation.png";
+import AWS from "@/assets/images/AWSCloudManagement.png";
+const galleryImages = [
+  AI_IMG,
+  CYBER_IMG, 
+  DIGITAL_IMG,
+  AWS,
+  AI_IMG,
+  CYBER_IMG,
+  DIGITAL_IMG,
+  AWS,
+  AI_IMG,
+  CYBER_IMG,
+  DIGITAL_IMG,
+  AWS,
 
+];
+const spans = [
+  "col-span-6 md:col-span-4",
+  "col-span-6 md:col-span-4",
+  "col-span-12 md:col-span-4",
+  "col-span-6 md:col-span-3",
+  "col-span-6 md:col-span-6",
+  "col-span-12 md:col-span-3",
+];
+
+
+const SMART_IMG =
+  "https://files.manuscdn.com/user_upload_by_module/session_file/310419663030867079/zxhLFuUlDPKEooqo.jpg";
+const TypingText = ({
+  text,
+  delayOffset = 0,
+  speed = 0.08,
+  className,
+}: {
+  text: string;
+  delayOffset?: number;
+  speed?: number;
+  className?: string;
+}) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  return (
+    <span ref={ref} className={className}>
+      {text.split("").map((char, index) => (
+        <motion.span
+          key={index}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isInView ? 1 : 0 }}
+          transition={{
+            delay: delayOffset + index * speed,
+            duration: 0.4,
+            ease: "easeInOut",
+          }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </span>
+  );
+};
 export default function Home() {
   const { t, dir, language } = useLanguage();
-  const ArrowIcon = dir === 'rtl' ? ArrowLeft : ArrowRight;
-  const ChevronIcon = dir === 'rtl' ? ChevronLeft : ChevronRight;
-
+  const ArrowIcon = dir === "rtl" ? ArrowLeft : ArrowRight;
+  const ChevronIcon = dir === "rtl" ? ChevronLeft : ChevronRight;
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const services = [
     {
       icon: Brain,
-      title: t('services.ai.title'),
-      description: t('services.ai.description'),
+      title: t("services.ai.title"),
+      description: t("services.ai.description"),
       image: AI_IMG,
-      color: '#00D4AA',
+      color: "#00D4AA",
     },
     {
       icon: Shield,
-      title: t('services.cyber.title'),
-      description: t('services.cyber.description'),
+      title: t("services.cyber.title"),
+      description: t("services.cyber.description"),
       image: CYBER_IMG,
-      color: '#C9A227',
+      color: "#C9A227",
     },
     {
       icon: Sparkles,
-      title: t('services.digital.title'),
-      description: t('services.digital.description'),
+      title: t("services.digital.title"),
+      description: t("services.digital.description"),
       image: DIGITAL_IMG,
-      color: '#00D4AA',
-    },
-    {
-      icon: Building2,
-      title: t('services.smart.title'),
-      description: t('services.smart.description'),
-      image: SMART_IMG,
-      color: '#C9A227',
+      color: "#00D4AA",
     },
     {
       icon: Cloud,
-      title: language === 'en' ? 'AWS Cloud Management' : 'إدارة سحابة AWS',
-      description: language === 'en' 
-        ? 'Comprehensive AWS cloud services for scalable and secure infrastructure.'
-        : 'خدمات سحابة AWS الشاملة للبنية التحتية القابلة للتوسع والآمنة.',
-      image: DIGITAL_IMG,
-      color: '#FF9900',
+      title: language === "en" ? "AWS Cloud Management" : "إدارة سحابة AWS",
+      description:
+        language === "en"
+          ? "Comprehensive AWS cloud services for scalable and secure infrastructure."
+          : "خدمات سحابة AWS الشاملة للبنية التحتية القابلة للتوسع والآمنة.",
+      image: AWS,
+      color: "#FF9900",
     },
   ];
 
   const products = [
-    { name: t('products.nalyst.name'), description: t('products.nalyst.description'), icon: '📊' },
-    { name: t('products.newshunt.name'), description: t('products.newshunt.description'), icon: '📰' },
-    { name: t('products.asaad.name'), description: t('products.asaad.description'), icon: '🛡️' },
-    { name: t('products.khella.name'), description: t('products.khella.description'), icon: '💬' },
-    { name: t('products.4kast.name'), description: t('products.4kast.description'), icon: '📈' },
-    { name: t('products.hr360.name'), description: t('products.hr360.description'), icon: '👥' },
+    {
+      name: t("products.nalyst.name"),
+      description: t("products.nalyst.description"),
+      icon: nalystLogo,
+      url: "https://newshunt-sensika.vercel.app/en",
+    },
+    {
+      name: t("products.newshunt.name"),
+      description: t("products.newshunt.description"),
+      icon: newsHuntLogo,
+      // url: "/products/newshunt",
+    },
+    {
+      name: t("products.asaad.name"),
+      description: t("products.asaad.description"),
+      icon: assadLogo,
+      // url: "/products/asaad", 
+
+      // placeholder, change later
+    },
+    {
+      name: t("products.khella.name"),
+      description: t("products.khella.description"),
+
+      // url: "/products/khella", 
+      icon: khellaLogo,
+      // placeholder, change later
+    },
+    {
+      name: t("products.4kast.name"),
+      description: t("products.4kast.description"),
+      // url: "/products/4kast", 
+      icon: kastLogo,
+      // placeholder, change later
+    },
+    {
+      name: t("products.hr360.name"),
+      description: t("products.hr360.description"),
+      // url: "/products/hr360", 
+      icon: hr360Logo,
+      // placeholder, change later
+    },
   ];
 
   const industries = [
-    { icon: Landmark, title: t('industries.government.title'), description: t('industries.government.description') },
-    { icon: Lightbulb, title: t('industries.thinktanks.title'), description: t('industries.thinktanks.description') },
-    { icon: ShoppingCart, title: t('industries.ecommerce.title'), description: t('industries.ecommerce.description') },
-    { icon: Newspaper, title: t('industries.media.title'), description: t('industries.media.description') },
-    { icon: Building, title: t('industries.municipalities.title'), description: t('industries.municipalities.description') },
-    { icon: Briefcase, title: t('industries.private.title'), description: t('industries.private.description') },
-    { icon: Heart, title: language === 'en' ? 'Healthcare' : 'الرعاية الصحية', description: language === 'en' ? 'Digital health solutions for healthcare providers.' : 'حلول الصحة الرقمية لمقدمي الرعاية الصحية.' },
-    { icon: Store, title: language === 'en' ? 'Retail' : 'التجزئة', description: language === 'en' ? 'Omnichannel retail solutions for modern shopping.' : 'حلول التجزئة متعددة القنوات للتسوق الحديث.' },
+    {
+      icon: Landmark,
+      title: t("industries.government.title"),
+      description: t("industries.government.description"),
+    },
+    {
+      icon: Lightbulb,
+      title: t("industries.thinktanks.title"),
+      description: t("industries.thinktanks.description"),
+    },
+    {
+      icon: ShoppingCart,
+      title: t("industries.ecommerce.title"),
+      description: t("industries.ecommerce.description"),
+    },
+    {
+      icon: Newspaper,
+      title: t("industries.media.title"),
+      description: t("industries.media.description"),
+    },
+    {
+      icon: Building,
+      title: t("industries.municipalities.title"),
+      description: t("industries.municipalities.description"),
+    },
+    {
+      icon: Briefcase,
+      title: t("industries.private.title"),
+      description: t("industries.private.description"),
+    },
+    {
+      icon: Heart,
+      title: language === "en" ? "Healthcare" : "الرعاية الصحية",
+      description:
+        language === "en"
+          ? "Digital health solutions for healthcare providers."
+          : "حلول الصحة الرقمية لمقدمي الرعاية الصحية.",
+    },
+    {
+      icon: Store,
+      title: language === "en" ? "Retail" : "التجزئة",
+      description:
+        language === "en"
+          ? "Omnichannel retail solutions for modern shopping."
+          : "حلول التجزئة متعددة القنوات للتسوق الحديث.",
+    },
   ];
 
-  return (
-    <div className="min-h-screen bg-[#0A1628]">
-      <Header />
-      
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img 
-            src={HERO_BG}
-            alt="Hero Background" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628] via-[#0A1628]/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-transparent to-[#0A1628]/50" />
-        </div>
 
-        {/* Animated Particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
+  const FloatingProducts = ({
+    products,
+    color = "#1c7f87",
+    repeat = 3,
+  }: {
+    products: string[];
+    color?: string;
+    repeat?: number;
+  }) => {
+    const repeatedProducts = Array.from({ length: repeat }).flatMap(() => products);
+
+    // store used positions to avoid collision
+    const positions: { top: number; left: number }[] = [];
+
+    const getSafePosition = () => {
+      let top: number, left: number, attempts = 0;
+
+      do {
+        top = 10 + Math.random() * 80; // 10%-90%
+        left = 10 + Math.random() * 80; // 10%-90%
+        attempts++;
+      } while (
+        positions.some(
+          (pos) =>
+            Math.abs(pos.top - top) < 12 && // vertical spacing
+            Math.abs(pos.left - left) < 20 // horizontal spacing
+        ) &&
+        attempts < 100
+      );
+
+      positions.push({ top, left });
+      return { top, left };
+    };
+
+    return (
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {repeatedProducts.map((product, index) => {
+          const { top, left } = getSafePosition();
+
+          const rotateStart = -15 + Math.random() * 30; // small tilt
+          const xAmplitude = 15 + Math.random() * 25; // small horizontal float
+          const yAmplitude = 15 + Math.random() * 25; // small vertical float
+          const direction = Math.random() > 0.5 ? 1 : -1;
+
+          return (
             <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-[#00D4AA] rounded-full"
+              key={index}
+              className="absolute font-bold text-2xl md:text-4xl whitespace-nowrap"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                top: `${top}%`,
+                left: `${left}%`,
+                color: color,
+                opacity: 0.16,
+                rotate: `${rotateStart}deg`,
               }}
               animate={{
-                y: [0, -100, 0],
-                opacity: [0, 1, 0],
+                y: [0, yAmplitude * direction, 0],
+                x: [0, xAmplitude * -direction, 0],
+                rotate: [rotateStart, rotateStart + 8 * direction, rotateStart],
               }}
               transition={{
-                duration: 3 + Math.random() * 2,
+                duration: 18 + Math.random() * 10,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                ease: "easeInOut",
               }}
-            />
-          ))}
-        </div>
+            >
+              {product}
+            </motion.div>
+          );
+        })}
+      </div>
+    );
+  };
 
-        <div className="container relative z-10 pt-32 pb-20">
-          <div className={`max-w-3xl ${dir === 'rtl' ? 'mr-0 ml-auto text-right' : ''}`}>
+
+
+  const productNames = [
+    t("products.nalyst.name"),
+    t("products.newshunt.name"),
+    t("products.asaad.name"),
+    t("products.khella.name"),
+    t("products.4kast.name"),
+    t("products.hr360.name"),
+  ];
+
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardWidth, setCardWidth] = useState(220);
+
+  useEffect(() => {
+    const updateWidth = () => {
+      setCardWidth(window.innerWidth < 768 ? window.innerWidth - 112 : 220);
+    };
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % products.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [products.length]);
+
+  const goNext = () => setCurrentIndex((prev) => (prev + 1) % products.length);
+  const goPrev = () => setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+  return (
+    <div className="min-h-screen bg-background text-foreground font-body">
+      <Header />
+
+      {/* Hero Section */}
+
+      <section className="relative min-h-[90vh] flex bg-cover items-center overflow-hidden">
+        {/* Background Image with Smooth Zoom */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 6, ease: "easeOut" }}
+        >
+          <img
+            src={HeroImage}
+            alt="Hero Background"
+            className="w-full h-full object-cover"
+          />
+          {/* Blue semi-transparent dark overlay */}
+          <div className="absolute inset-0 bg-blue-900/40"></div>
+        </motion.div>
+
+        <FloatingProducts
+          products={productNames}
+          color="#1c7f87"
+          repeat={2}
+        />
+
+        <div className="container mx-auto px-4 relative z-10 pt-32 pb-20">
+          <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+
+            {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className={`inline-block px-4 py-2 rounded-full bg-[#C9A227]/10 border border-[#C9A227]/30 text-[#C9A227] text-sm font-medium mb-6 ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-                {language === 'en' ? 'Aligned with Vision 2030' : 'متوافق مع رؤية 2030'}
-              </span>
+
             </motion.div>
 
+            {/* Typing Title */}
             <motion.h1
-              className={`text-5xl md:text-7xl font-bold text-white leading-tight mb-4 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
+              className={`text-3xl sm:text-4xl md:text-6xl text-center lg:text-7xl xl:text-8xl font-bold leading-tight mb-6 ${dir === "rtl" ? "font-arabic" : "font-display"
+                }`}
             >
-              {t('hero.title')}
-            </motion.h1>
-            
-            <motion.h2
-              className={`text-4xl md:text-6xl font-bold mb-8 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <span className="text-gradient-teal">{t('hero.subtitle')}</span>
-            </motion.h2>
+              <div className="block text-white">
+                <TypingText text={t("hero.title")} delayOffset={0.5} />
+              </div>
 
+              <div className="text-4xl md:text-5xl lg:text-6xl text-white mt-4">
+                <TypingText
+                  text={t("hero.subtitle")}
+                  delayOffset={0.5 + t("hero.title").length * 0.035}
+                />
+              </div>
+            </motion.h1>
+
+            {/* Description */}
             <motion.p
-              className={`text-lg text-gray-300 mb-10 max-w-2xl leading-relaxed ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}
-              initial={{ opacity: 0, y: 30 }}
+              className={`text-lg md:text-xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed ${dir === "rtl" ? "font-arabic" : "font-body"
+                }`}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              transition={{
+                delay:
+                  0.8 + t("hero.title").length * 0.035 +
+                  t("hero.subtitle").length * 0.02,
+                duration: 0.8,
+              }}
             >
-              {t('hero.description')}
+              {t("hero.description")}
             </motion.p>
 
+            {/* Buttons */}
             <motion.div
-              className={`flex flex-wrap gap-4 ${dir === 'rtl' ? 'flex-row-reverse' : ''}`}
-              initial={{ opacity: 0, y: 30 }}
+              className={`flex flex-wrap gap-4 justify-center ${dir === "rtl" ? "flex-row-reverse" : ""
+                }`}
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{
+                delay:
+                  1 +
+                  t("hero.title").length * 0.035 +
+                  t("hero.subtitle").length * 0.02,
+              }}
             >
               <Link href="/services">
                 <motion.button
-                  className={`group flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#00D4AA] to-[#00D4AA]/80 text-[#0A1628] font-semibold rounded-lg hover:shadow-lg hover:shadow-[#00D4AA]/25 transition-all ${dir === 'rtl' ? 'flex-row-reverse font-arabic' : 'font-body'}`}
-                  whileHover={{ scale: 1.05, y: -2 }}
+                  className={`group flex items-center gap-2 px-8 py-4 bg-[#32a7b5] text-white font-bold rounded-xl shadow-lg hover:bg-[#2a8f9a] transition-all duration-300 ${dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"
+                    }`}
+                  whileHover={{ scale: 1.05, y: -4 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {t('hero.cta.services')}
-                  <ArrowIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  {t("hero.cta.services")}
+                  <ArrowIcon className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </motion.button>
               </Link>
+
               <Link href="/contact">
                 <motion.button
-                  className={`flex items-center gap-2 px-8 py-4 border-2 border-[#C9A227] text-[#C9A227] font-semibold rounded-lg hover:bg-[#C9A227]/10 transition-all ${dir === 'rtl' ? 'flex-row-reverse font-arabic' : 'font-body'}`}
-                  whileHover={{ scale: 1.05, y: -2 }}
+                  className={`flex items-center gap-2 px-8 py-4 border-2 border-[#32a7b5] text-white font-bold rounded-xl hover:bg-[#32a7b5]/10 transition-all duration-300 ${dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"
+                    }`}
+                  whileHover={{ scale: 1.05, y: -4 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {t('hero.cta.contact')}
+                  {t("hero.cta.contact")}
                 </motion.button>
               </Link>
             </motion.div>
+
           </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <div className="w-6 h-10 rounded-full border-2 border-[#C9A227]/50 flex justify-center pt-2">
-            <div className="w-1.5 h-3 bg-[#C9A227] rounded-full" />
-          </div>
-        </motion.div>
       </section>
 
+
+
       {/* Services Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#C9A227]/30 to-transparent" />
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-[#00D4AA]/5 rounded-full blur-3xl" />
-        
-        <div className="container">
+      <section className="py-24 relative overflow-hidden bg-slate-200">
+        <div className="container mx-auto px-4">
+          {/* Section Heading */}
           <motion.div
-            className={`text-center mb-16 ${dir === 'rtl' ? 'font-arabic' : ''}`}
+            className={`text-center mb-16 max-w-3xl mx-auto ${dir === "rtl" ? "font-arabic" : ""}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
-            <span className="inline-block px-4 py-2 rounded-full bg-[#00D4AA]/10 border border-[#00D4AA]/30 text-[#00D4AA] text-sm font-medium mb-4">
-              {language === 'en' ? 'What We Do' : 'ما نقدمه'}
-            </span>
-            <h2 className={`text-4xl md:text-5xl font-bold text-white mb-4 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
-              {t('services.title')}
+
+            <h2
+              className={`text-4xl md:text-5xl font-bold text-slate-800 mb-6 ${dir === "rtl" ? "font-arabic" : "font-display"}`}
+            >
+              {t("services.title")}
             </h2>
-            <p className={`text-gray-400 text-lg max-w-2xl mx-auto ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-              {t('services.subtitle')}
+            <p
+              className={`text-slate-700 text-lg ${dir === "rtl" ? "font-arabic" : "font-body"}`}
+            >
+              {t("services.subtitle")}
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Services Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                className="group relative rounded-2xl overflow-hidden"
+                className="group relative rounded-sm overflow-hidden bg-white shadow-sm hover:shadow-md "
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
               >
-                <div className="absolute inset-0">
-                  <img 
-                    src={service.image} 
+                {/* Image with overlay */}
+                <div className="relative h-64 overflow-hidden">
+
+                  <div className="absolute inset-0   z-10" />
+                  <img
+                    src={service.image}
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/70 to-transparent" />
                 </div>
-                
-                <div className={`relative p-8 min-h-[320px] flex flex-col justify-end ${dir === 'rtl' ? 'text-right' : ''}`}>
-                  <div 
-                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-4"
-                    style={{ backgroundColor: `${service.color}20`, border: `1px solid ${service.color}40` }}
+
+                {/* Card Content */}
+                <div
+                  className={`relative p-8 ${dir === "rtl" ? "text-right" : ""}`}
+                >
+
+                  <h3
+                    className={`text-2xl font-bold text-slate-800 mb-3 ${dir === "rtl" ? "font-arabic" : "font-display"}`}
                   >
-                    <service.icon className="w-7 h-7" style={{ color: service.color }} />
-                  </div>
-                  
-                  <h3 className={`text-2xl font-bold text-white mb-3 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
                     {service.title}
                   </h3>
-                  
-                  <p className={`text-gray-300 mb-4 leading-relaxed ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
+
+                  <p
+                    className={`text-slate-700 mb-6 leading-relaxed ${dir === "rtl" ? "font-arabic" : "font-body"}`}
+                  >
                     {service.description}
                   </p>
-                  
+
                   <Link href="/services">
                     <motion.span
-                      className={`inline-flex items-center gap-2 text-sm font-medium cursor-pointer ${dir === 'rtl' ? 'flex-row-reverse font-arabic' : 'font-body'}`}
-                      style={{ color: service.color }}
-                      whileHover={{ x: dir === 'rtl' ? -5 : 5 }}
+                      className={`inline-flex items-center gap-2 text-sm font-bold text-[#32a7b5]  cursor-pointer hover:underline ${dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"}`}
+                      whileHover={{ x: dir === "rtl" ? -5 : 5 }}
                     >
-                      {t('services.learnMore')}
+                      {t("services.learnMore")}
                       <ChevronIcon className="w-4 h-4" />
                     </motion.span>
                   </Link>
@@ -295,133 +543,322 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Products Section */}
-      <section className="py-24 relative bg-[#050d18]">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-1/4 w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-[#00D4AA]/10 rounded-full blur-3xl" />
-        </div>
 
-        <div className="container relative">
+
+
+      {/* Products Section */}
+      <section className="py-24 relative bg-slate-100 overflow-hidden">
+
+        {/* Decorative blobs */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#32a7b5]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#32a7b5]/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="container mx-auto px-4 relative">
+
+          {/* Section Heading */}
           <motion.div
-            className={`text-center mb-16 ${dir === 'rtl' ? 'font-arabic' : ''}`}
+            className={`text-center mb-16 max-w-3xl mx-auto ${dir === "rtl" ? "font-arabic" : ""}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.7 }}
           >
-            <span className="inline-block px-4 py-2 rounded-full bg-[#C9A227]/10 border border-[#C9A227]/30 text-[#C9A227] text-sm font-medium mb-4">
-              {language === 'en' ? 'Our Solutions' : 'حلولنا'}
-            </span>
-            <h2 className={`text-4xl md:text-5xl font-bold text-white mb-4 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
-              {t('products.title')}
+            {/* <motion.span
+        className="inline-block px-4 py-2 rounded-full bg-[#32A7B51A] text-[#32a7b5] text-sm font-bold mb-4 uppercase tracking-wider"
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: false }}
+        transition={{ duration: 0.5 }}
+      >
+        {language === "en" ? "Our Products" : "منتجاتنا"}
+      </motion.span> */}
+            <h2 className={`text-4xl md:text-5xl font-bold text-slate-700 mb-6 ${dir === "rtl" ? "font-arabic" : "font-display"}`}>
+              {t("products.title")}
             </h2>
-            <p className={`text-gray-400 text-lg max-w-2xl mx-auto ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-              {t('products.subtitle')}
+            <p className={`text-slate-600 text-lg ${dir === "rtl" ? "font-arabic" : "font-body"}`}>
+              {t("products.subtitle")}
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product, index) => (
+          {/* Slider Container */}
+          <div className="relative px-14">
+
+            {/* Prev Button - RTL mein right side pe */}
+            <motion.button
+              onClick={dir === 'rtl' ? goNext : goPrev}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-xl border border-[#32a7b5]/20 flex items-center justify-center text-[#32a7b5] hover:bg-[#32a7b5] hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </motion.button>
+
+            {/* Next Button - RTL mein left side pe */}
+            <motion.button
+              onClick={dir === 'rtl' ? goPrev : goNext}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white shadow-xl border border-[#32a7b5]/20 flex items-center justify-center text-[#32a7b5] hover:bg-[#32a7b5] hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </motion.button>
+
+            {/* Track */}
+            <div className="overflow-hidden rounded-2xl">
               <motion.div
-                key={index}
-                className={`group p-6 rounded-2xl bg-[#0A1628] border border-white/5 hover:border-[#00D4AA]/30 transition-all duration-300 ${dir === 'rtl' ? 'text-right' : ''}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
+                className="flex gap-6"
+                animate={{
+                  x: dir === 'rtl'
+                    ? `${currentIndex * (typeof window !== 'undefined' && window.innerWidth < 768 ? window.innerWidth - 112 + 24 : 220 + 24)}px`
+                    : `-${currentIndex * (typeof window !== 'undefined' && window.innerWidth < 768 ? window.innerWidth - 112 + 24 : 220 + 24)}px`
+                }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="text-4xl mb-4">{product.icon}</div>
-                <h3 className={`text-xl font-bold text-white mb-2 group-hover:text-[#00D4AA] transition-colors ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
-                  {product.name}
-                </h3>
-                <p className={`text-gray-400 text-sm leading-relaxed ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-                  {product.description}
-                </p>
+                {[...products, ...products, ...products].map((product, index) => (
+                  <motion.a
+                    key={index}
+                    href={product.url || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-shrink-0 w-[calc(100vw-8rem)] md:w-52 h-52 group relative cursor-pointer"
+                    whileHover={{ y: -8, scale: 1.05 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  >
+                    {/* Card */}
+                    <div className="w-full h-full bg-white border border-[#32a7b5]/10 shadow-md group-hover:shadow-2xl transition-all duration-400 flex items-center justify-center overflow-hidden relative">
+
+                      {/* Hover glow bg */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#32a7b5]/0 to-[#32a7b5]/0 transition-all duration-500" />
+
+                      {/* Top teal bar on hover */}
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#32a7b5]/0 via-[#32a7b5] to-[#32a7b5]/0 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                      {/* Floating logo */}
+                      <motion.img
+                        src={product.icon}
+                        alt={product.name}
+                        className="w-40 h-40 p-3 object-contain relative z-10"
+                        style={{ mixBlendMode: 'multiply' }}
+                        animate={{ y: [0, -6, 0] }}
+                        transition={{
+                          duration: 3.5,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                          delay: (index % products.length) * 0.4,
+                        }}
+                      />
+                    </div>
+                  </motion.a>
+                ))}
               </motion.div>
+            </div>
+
+            {/* Fade edges */}
+            <div className="absolute left-12 top-0 h-full w-10 bg-gradient-to-r from-slate-100 to-transparent pointer-events-none z-10" />
+            <div className="absolute right-12 top-0 h-full w-10 bg-gradient-to-l from-slate-100 to-transparent pointer-events-none z-10" />
+          </div>
+
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-10">
+            {products.map((_, i) => (
+              <motion.button
+                key={i}
+                className={`h-2 rounded-full transition-all duration-300 ${i === currentIndex
+                  ? 'w-8 bg-[#32a7b5]'
+                  : 'w-2 bg-[#32a7b5]/25 hover:bg-[#32a7b5]/50'
+                  }`}
+                onClick={() => setCurrentIndex(i)}
+                whileTap={{ scale: 0.9 }}
+              />
             ))}
           </div>
 
+          {/* View All Button */}
           <motion.div
             className="text-center mt-12"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+            transition={{ duration: 0.7 }}
           >
             <Link href="/products">
               <motion.button
-                className={`inline-flex items-center gap-2 px-6 py-3 border border-[#C9A227]/50 text-[#C9A227] rounded-lg hover:bg-[#C9A227]/10 transition-colors ${dir === 'rtl' ? 'flex-row-reverse font-arabic' : 'font-body'}`}
-                whileHover={{ scale: 1.05 }}
+                className={`inline-flex items-center gap-2 px-8 py-4 bg-[#32A7B5] text-white rounded-xl font-bold transition-colors shadow-lg shadow-[#32a7b5]/20 ${dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"}`}
+                whileHover={{ scale: 1.05, y: -3, boxShadow: '0 20px 40px rgba(50,167,181,0.3)' }}
                 whileTap={{ scale: 0.95 }}
               >
-                {t('common.viewAll')}
-                <ChevronIcon className="w-4 h-4" />
+                {t("common.viewAll")}
+                <ChevronIcon className="w-5 h-5" />
               </motion.button>
             </Link>
           </motion.div>
+
         </div>
       </section>
 
+
+      <section className="py-24 bg-slate-100">
+        {/* Section Heading */}
+        <motion.div
+          className={`text-center mb-16 max-w-3xl mx-auto ${dir === "rtl" ? "font-arabic" : ""
+            }`}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+        >
+          {/* <span className="inline-block px-4 py-2 rounded-full bg-[#32A7B51A] text-[#32a7b5] text-sm font-bold mb-4 uppercase tracking-wider">
+          {language === "en" ? "Gallery" : "المعرض"}
+        </span> */}
+
+          <h2
+            className={`text-4xl md:text-5xl font-bold text-slate-800 mb-6 ${dir === "rtl" ? "font-arabic" : "font-display"
+              }`}
+          >
+            {language === "en" ? "Our Products Gallery" : "معرض منتجاتنا"}
+          </h2>
+
+          <p
+            className={`text-slate-700 text-lg ${dir === "rtl" ? "font-arabic" : "font-body"
+              }`}
+          >
+            {language === "en"
+              ? "Explore visuals of our innovative solutions and digital transformation services."
+              : "استكشف صور حلولنا المبتكرة وخدمات التحول الرقمي."}
+          </p>
+        </motion.div>
+
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-12 gap-3 mx-8 md:mx-12 lg:mx-16">
+          {galleryImages.map((img, index) => (
+            <motion.div
+              key={index}
+              className={`relative group cursor-pointer overflow-hidden ${spans[index % spans.length]
+                }`}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: false }}
+              transition={{ duration: 0.6, delay: index * 0.05 }}
+              whileHover={{ scale: 1.02 }}
+              onClick={() => setSelectedImage(img)}
+            >
+              <img
+                src={img}
+                alt={`Gallery ${index}`}
+                className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+
+              {/* Hover Overlay */}
+              <motion.div
+                className="absolute inset-0 bg-[#32a7b5]/70 opacity-0 group-hover:opacity-100 flex items-center justify-center"
+                transition={{ duration: 0.3 }}
+              >
+                <span className="text-white font-bold text-lg">
+                  {language === "en" ? "View Image" : "عرض الصورة"}
+                </span>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Lightbox / Modal */}
+        {selectedImage && (
+          <div className="fixed inset-0 bg-gray-50 bg-opacity-70 flex items-center justify-center z-50">
+            <div className="relative max-w-3xl mx-4 md:mx-0">
+              <img
+                src={selectedImage}
+                alt="Selected"
+                className="w-full max-h-[80vh] object-contain rounded"
+              />
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-2 right-2 text-white text-2xl font-bold p-2 hover:text-gray-300"
+              >
+                &times;
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
+
+
+
+
       {/* Industries Section */}
-      <section className="py-24 relative">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#00D4AA]/30 to-transparent" />
-        
-        <div className="container">
+      <section className="py-24 relative bg-white">
+        <div className="container mx-auto px-4">
+          {/* Section Heading */}
           <motion.div
-            className={`text-center mb-16 ${dir === 'rtl' ? 'font-arabic' : ''}`}
+            className={`text-center mb-16 max-w-3xl mx-auto ${dir === "rtl" ? "font-arabic" : ""}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
-            <span className="inline-block px-4 py-2 rounded-full bg-[#00D4AA]/10 border border-[#00D4AA]/30 text-[#00D4AA] text-sm font-medium mb-4">
-              {language === 'en' ? 'Sectors' : 'القطاعات'}
-            </span>
-            <h2 className={`text-4xl md:text-5xl font-bold text-white mb-4 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
-              {t('industries.title')}
+            {/* <span className="inline-block px-4 py-2 rounded-full bg-[#32A7B51A] text-[#32a7b5] text-sm font-bold mb-4 uppercase tracking-wider">
+              {language === "en" ? "Sectors" : "القطاعات"}
+            </span> */}
+            <h2
+              className={`text-4xl md:text-5xl font-bold text-slate-700 mb-6 ${dir === "rtl" ? "font-arabic" : "font-display"}`}
+            >
+              {t("industries.title")}
             </h2>
-            <p className={`text-gray-400 text-lg max-w-2xl mx-auto ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-              {t('industries.subtitle')}
+            <p
+              className={`text-slate-600 text-lg ${dir === "rtl" ? "font-arabic" : "font-body"}`}
+            >
+              {t("industries.subtitle")}
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Industries Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2  items-center lg:grid-cols-3 gap-8 ">
             {industries.map((industry, index) => (
               <motion.div
                 key={index}
-                className={`group p-6 rounded-2xl glass hover:border-[#C9A227]/30 transition-all duration-300 ${dir === 'rtl' ? 'text-right' : ''}`}
+                className={`group p-8 rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 
+flex flex-col items-center text-center h-full
+${dir === "rtl" ? "font-arabic" : ""}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
+                whileHover={{ y: -8 }}
               >
-                <div className="w-12 h-12 rounded-xl bg-[#C9A227]/10 border border-[#C9A227]/30 flex items-center justify-center mb-4 group-hover:bg-[#C9A227]/20 transition-colors">
-                  <industry.icon className="w-6 h-6 text-[#C9A227]" />
+                {/* Icon */}
+                <div className="w-14 h-14 rounded-xl  text-[#32a7b5]  flex items-center justify-center mb-6  transition-colors duration-300">
+                  <industry.icon className="w-12 h-12 " />
                 </div>
-                <h3 className={`text-lg font-bold text-white mb-2 group-hover:text-[#C9A227] transition-colors ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
+
+                {/* Industry Title */}
+                <h3
+                  className={`text-xl font-bold text-slate-700 mb-3 transition-colors ${dir === "rtl" ? "font-arabic" : "font-display"}`}
+                >
                   {industry.title}
                 </h3>
-                <p className={`text-gray-400 text-sm leading-relaxed ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
+
+                {/* Industry Description */}
+                <p
+                  className={`text-slate-600 text-sm leading-relaxed ${dir === "rtl" ? "font-arabic" : "font-body"}`}
+                >
                   {industry.description}
                 </p>
               </motion.div>
             ))}
           </div>
 
+          {/* View All Button */}
           <motion.div
-            className="text-center mt-12"
+            className="text-center mt-16"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
             <Link href="/industries">
               <motion.button
-                className={`inline-flex items-center gap-2 px-6 py-3 border border-[#00D4AA]/50 text-[#00D4AA] rounded-lg hover:bg-[#00D4AA]/10 transition-colors ${dir === 'rtl' ? 'flex-row-reverse font-arabic' : 'font-body'}`}
+                className={`inline-flex items-center gap-2 px-8 py-4 bg-[#32A7B5] text-white rounded-xl font-bold  transition-colors ${dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"}`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {t('common.viewAll')}
-                <ChevronIcon className="w-4 h-4" />
+                {t("common.viewAll")}
+                <ChevronIcon className="w-5 h-5" />
               </motion.button>
             </Link>
           </motion.div>
@@ -429,33 +866,40 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#00D4AA]/10 via-transparent to-[#C9A227]/10" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00D4AA]/5 rounded-full blur-3xl" />
-        
-        <div className="container relative">
+      <section className="py-24 relative overflow-hidden bg-[#E0F2F4]">
+        <div className="absolute inset-0 bg-yellow-500/5" />
+        <div className="container mx-auto px-4 relative">
           <motion.div
-            className={`text-center max-w-3xl mx-auto ${dir === 'rtl' ? 'font-arabic' : ''}`}
+            className={`text-center max-w-4xl mx-auto ${dir === "rtl" ? "font-arabic" : ""}`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
           >
-            <h2 className={`text-4xl md:text-5xl font-bold text-white mb-6 ${dir === 'rtl' ? 'font-arabic' : 'font-display'}`}>
-              {language === 'en' ? 'Ready to Transform Your Business?' : 'هل أنت مستعد لتحويل أعمالك؟'}
+            {/* Section Heading */}
+            <h2
+              className={`text-4xl md:text-6xl font-bold text-slate-700 mb-8 ${dir === "rtl" ? "font-arabic" : "font-display"}`}
+            >
+              {language === "en"
+                ? "Ready to Transform Your Business?"
+                : "هل أنت مستعد لتحويل أعمالك؟"}
             </h2>
-            <p className={`text-gray-300 text-lg mb-10 ${dir === 'rtl' ? 'font-arabic' : 'font-body'}`}>
-              {language === 'en' 
-                ? 'Partner with us to unlock the full potential of digital innovation and drive your organization forward.'
-                : 'شاركنا لإطلاق الإمكانات الكاملة للابتكار الرقمي ودفع مؤسستك إلى الأمام.'
-              }
+
+            {/* Section Description */}
+            <p
+              className={`text-slate-600 text-xl mb-12 max-w-2xl mx-auto leading-relaxed ${dir === "rtl" ? "font-arabic" : "font-body"}`}
+            >
+              {language === "en"
+                ? "Partner with us to unlock the full potential of digital innovation and drive your organization forward."
+                : "شاركنا لإطلاق الإمكانات الكاملة للابتكار الرقمي ودفع مؤسستك إلى الأمام."}
             </p>
+
+            {/* CTA Button */}
             <Link href="/contact">
               <motion.button
-                className={`inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-[#00D4AA] to-[#00D4AA]/80 text-[#0A1628] font-bold text-lg rounded-xl hover:shadow-xl hover:shadow-[#00D4AA]/25 transition-all ${dir === 'rtl' ? 'flex-row-reverse font-arabic' : 'font-body'}`}
-                whileHover={{ scale: 1.05, y: -3 }}
+                className={`inline-flex items-center gap-3 px-10 py-5  text-[#32A7B5] font-bold text-lg rounded-xl shadow-xl border-2 border-[#32A7B5] hover:-translate-y-1 transition-all duration-300 ${dir === "rtl" ? "flex-row-reverse font-arabic" : "font-body"}`}
                 whileTap={{ scale: 0.95 }}
               >
-                {t('hero.cta.contact')}
+                {t("hero.cta.contact")}
                 <ArrowIcon className="w-6 h-6" />
               </motion.button>
             </Link>
