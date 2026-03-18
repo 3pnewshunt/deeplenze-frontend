@@ -106,5 +106,8 @@ temp/
 *.sqlite3
 
 package-lock.json
+pm2-deploy.cjs
 deploy.sh
-pm2-deploy.js
+ecosystem.config.cjs
+ecosystem.config.js
+
