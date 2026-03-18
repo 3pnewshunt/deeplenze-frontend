@@ -46,19 +46,21 @@ import AI_IMG from "@/assets/images/AI.png";
 import CYBER_IMG from "@/assets/images/CyberSecurity.png";
 import DIGITAL_IMG from "@/assets/images/DigitalTransformation.png";
 import AWS from "@/assets/images/AWSCloudManagement.png";
+import Nalyst1 from "@/assets/images/ProductImages/Nalyst 1.png";
+import Nalyst2 from "@/assets/images/ProductImages/Nalyst 2.png";
 const galleryImages = [
-  AI_IMG,
+  Nalyst1,
   CYBER_IMG, 
   DIGITAL_IMG,
-  AWS,
+  Nalyst2,
   AI_IMG,
   CYBER_IMG,
   DIGITAL_IMG,
-  AWS,
+
   AI_IMG,
   CYBER_IMG,
   DIGITAL_IMG,
-  AWS,
+  
 
 ];
 const spans = [
