@@ -104,3 +104,7 @@ temp/
 *.db
 *.sqlite
 *.sqlite3
+
+package-lock.json
+deploy.sh
+pm2-deploy.js

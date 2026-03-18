@@ -14,6 +14,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
+import { useState } from "react";
 import {
   ArrowRight,
   ArrowLeft,
@@ -95,8 +96,8 @@ export default function Products() {
       tagline: language === 'en' ? 'GLOBAL NEWS AGGREGATION' : 'الذكاء الإعلامي',
       url: 'https://newshunt.io',
       platforms: {
-        android: "https://play.google.com/",
-        ios: "https://apps.apple.com/",
+        android: "https://play.google.com/store/apps/details?id=com.ngen.newshunt",
+        ios: "https://apps.apple.com/us/app/news-hunt-app/id6472041101",
         web: "https://newshunt.io"
       },
       industries: language === 'en'
