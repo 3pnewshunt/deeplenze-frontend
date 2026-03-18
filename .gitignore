@@ -105,6 +105,6 @@ temp/
 *.sqlite
 *.sqlite3
 
-echo "package-lock.json" >> .gitignore
-echo "deploy.sh" >> .gitignore
-echo "pm2-deploy.js" >> .gitignore
+package-lock.json
+deploy.sh
+pm2-deploy.js
