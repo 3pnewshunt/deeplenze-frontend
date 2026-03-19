@@ -110,4 +110,5 @@ pm2-deploy.cjs
 deploy.sh
 ecosystem.config.cjs
 ecosystem.config.js
+server.cjs
 
